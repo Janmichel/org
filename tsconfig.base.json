@@ -23,7 +23,9 @@
       ],
       "@org/shop/feature-products": ["libs/shop/feature-products/src/index.ts"],
       "@org/shop/shared-ui": ["libs/shop/shared-ui/src/index.ts"],
-      "@org/ui": ["./ui/src/index.ts"]
+      "@org/ui": ["./ui/src/index.ts"],
+      "@dms/kis-design-system": ["../kds-design-system/dist/libs/index.d.ts"],
+      "@dms/kis-design-system/*": ["../kds-design-system/dist/libs/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,39 @@
+@use './material-theme' as theme;
+
+@include theme.org-material-theme();
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100%;
+  background: var(--org-semantic-surface-page);
+  color: var(--org-semantic-text-primary);
+  font: var(--mat-sys-body-medium);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--org-semantic-action-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

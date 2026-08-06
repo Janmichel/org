@@ -1,0 +1,82 @@
+<div class="shop-page product-list-container">
+  <header class="shop-page__header">
+    <h1 class="kis-layout-header__title">Our Products</h1>
+    <p class="kis-text-sm">Explore our wide selection of high-quality products</p>
+  </header>
+
+  <section class="shop-filters" aria-label="Product filters">
+    @if (categoryChipOptions().length) {
+      <kis-chips
+        [options]="categoryChipOptions()"
+        [isCloseIconVisible]="false"
+        data-testId="shop-category-chips"
+      />
+    }
+
+    <div class="shop-filters__row">
+      <kis-form-field-bar data-testId="shop-search-bar-field">
+        <input
+          kis-search-bar
+          [formControl]="searchControl"
+          aria-label="Search products"
+          placeholder="Search products..."
+          data-testId="shop-search-bar"
+        />
+      </kis-form-field-bar>
+
+      <kis-form-field
+        label="Category"
+        class="shop-filters__category"
+        data-testId="shop-category-field"
+      >
+        <kis-select
+          [formControl]="categoryControl"
+          placeholder="All categories"
+          [options]="categorySelectOptions()"
+          propLabel="name"
+          propValue="id"
+          [showSearchBar]="true"
+          aria-label="Filter by category"
+          data-testId="shop-category-select"
+        />
+      </kis-form-field>
+
+      <div class="shop-filters__stock">
+        <kis-checkbox
+          [formControl]="inStockControl"
+          label="In stock only"
+          data-testId="shop-in-stock-checkbox"
+        />
+      </div>
+    </div>
+  </section>
+
+  @if (loading()) {
+    <shop-loading-spinner />
+  } @else if (error()) {
+    <shop-error-message
+      [message]="error() || undefined"
+      (retry)="loadProducts()"
+    />
+  } @else {
+    <p class="shop-results-info kis-text-sm">
+      Showing {{ products().length }} of {{ totalProducts() }} products
+    </p>
+
+    <shop-product-grid
+      [products]="products()"
+      (productSelect)="onProductSelect($event)"
+    />
+
+    @if (hasMorePages()) {
+      <kis-paginator
+        data-testId="shop-paginator"
+        aria-label="Products pagination"
+        [length]="totalProducts()"
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage() - 1"
+        (page)="onPageChange($event)"
+      />
+    }
+  }
+</div>

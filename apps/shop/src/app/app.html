@@ -1,19 +1,41 @@
-<header class="app-header">
-  <div class="container">
-    <h1>{{ title }}</h1>
-    <nav>
-      <a routerLink="/products" routerLinkActive="active">Products</a>
-    </nav>
-  </div>
-</header>
+<kis-layout-container [isHeaderFixed]="true">
+  <kis-layout-header
+    [title]="title()"
+    [description]="description()"
+  >
+    <a
+      kis-button
+      routerLink="/products"
+      routerLinkActive="active"
+      color="primary"
+      data-testId="shop-nav-products"
+    >
+      Products
+    </a>
+    <a
+      kis-button
+      routerLink="/table"
+      routerLinkActive="active"
+      color="primary"
+      data-testId="shop-nav-table"
+    >
+      Table
+    </a>
+    <a
+      kis-button
+      routerLink="/showcase"
+      routerLinkActive="active"
+      color="primary"
+      data-testId="shop-nav-showcase"
+    >
+      Showcase
+    </a>
+  </kis-layout-header>
 
-<main class="app-main">
-  <router-outlet></router-outlet>
-</main>
+  <router-outlet />
+</kis-layout-container>
 
-<footer class="app-footer">
-  <div class="container">
-    <p>© 2025 Nx Shop Demo - Showcasing Nx Monorepo Features</p>
-    <p>Frontend (Angular) + Backend (Express) + Shared Libraries</p>
-  </div>
+<footer class="shop-footer">
+  <p>© 2025 Nx Shop Demo — KIS Design System integration</p>
+  <p>Frontend (Angular) + Backend (Express) + Shared Libraries</p>
 </footer>

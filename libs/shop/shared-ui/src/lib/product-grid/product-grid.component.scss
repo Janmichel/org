@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--kis-spacing-24, 24px);
+  width: 100%;
+  margin: 0;
+  padding: var(--kis-spacing-8, 8px) 0 var(--kis-spacing-24, 24px);
+}
+
+.product-grid__item {
+  min-width: 0;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--kis-spacing-16, 16px);
+  }
+}

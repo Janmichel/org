@@ -1,0 +1,41 @@
+<button
+  class="shop-button"
+  [matButton]="appearance()"
+  [class.shop-button--small]="size() === 'small'"
+  [class.shop-button--medium]="size() === 'medium'"
+  [class.shop-button--large]="size() === 'large'"
+  [class.shop-button--loading]="loading()"
+  [class.shop-button--full-width]="fullWidth()"
+  [color]="materialColor()"
+  [type]="type()"
+  [disabled]="isDisabled()"
+  [disableRipple]="disableRipple()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-busy]="loading()"
+  [attr.name]="name()"
+  [attr.value]="value()"
+  (click)="handleClick($event)"
+>
+  @if (loading()) {
+    <mat-progress-spinner
+      class="shop-button__spinner"
+      mode="indeterminate"
+      diameter="18"
+    />
+  } @else if (icon() && iconPosition() === 'start') {
+    <mat-icon class="shop-button__icon" aria-hidden="true">{{ icon() }}</mat-icon>
+  }
+
+  <span class="shop-button__label">
+    <ng-content />
+    @if (label()) {
+      {{ label() }}
+    }
+  </span>
+
+  @if (!loading() && icon() && iconPosition() === 'end') {
+    <mat-icon class="shop-button__icon" iconPositionEnd aria-hidden="true">
+      {{ icon() }}
+    </mat-icon>
+  }
+</button>

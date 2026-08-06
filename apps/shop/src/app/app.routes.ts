@@ -4,22 +4,32 @@ export const appRoutes: Route[] = [
   {
     path: '',
     redirectTo: 'products',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'products',
     loadChildren: () =>
-      import('@org/shop/feature-products').then(m => m.featureProductsRoutes),
+      import('@org/shop/feature-products').then((m) => m.featureProductsRoutes)
   },
   {
     path: 'products',
     loadChildren: () =>
       import('@org/shop/feature-product-detail').then(
-        m => m.featureProductDetailRoutes
-      ),
+        (m) => m.featureProductDetailRoutes
+      )
+  },
+  {
+    path: 'table',
+    loadChildren: () =>
+      import('@org/shop/feature-products').then((m) => m.featureTableRoutes)
+  },
+  {
+    path: 'showcase',
+    loadChildren: () =>
+      import('@org/shop/feature-products').then((m) => m.featureShowcaseRoutes)
   },
   {
     path: '**',
-    redirectTo: 'products',
-  },
+    redirectTo: 'products'
+  }
 ];

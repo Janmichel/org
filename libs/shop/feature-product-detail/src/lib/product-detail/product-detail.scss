@@ -1,0 +1,132 @@
+.product-detail-container {
+  .product-detail__breadcrumb {
+    margin-bottom: var(--kis-spacing-24, 24px);
+  }
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--kis-spacing-48, 48px);
+}
+
+.product-detail__media {
+  position: relative;
+}
+
+.product-detail__image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--kis-corner-md, 8px);
+}
+
+.product-detail__badge {
+  position: absolute;
+  top: var(--kis-spacing-16, 16px);
+  right: var(--kis-spacing-16, 16px);
+}
+
+.product-detail__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kis-spacing-24, 24px);
+}
+
+.product-detail__category {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--kis-on-surface-variant, #666);
+}
+
+.product-detail__title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.product-detail__rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--kis-spacing-12, 12px);
+}
+
+.product-detail__stars {
+  color: var(--kis-outline-variant, #ddd);
+}
+
+.product-detail__star--filled {
+  color: var(--kis-warning, #ffd700);
+}
+
+.product-detail__price {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--kis-primary, #005eb8);
+}
+
+.product-detail__description {
+  border-top: 1px solid var(--kis-outline-variant, #e0e0e0);
+  padding-top: var(--kis-spacing-24, 24px);
+
+  h2 {
+    margin: 0 0 var(--kis-spacing-12, 12px);
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--kis-on-surface-variant, #666);
+  }
+}
+
+.product-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kis-spacing-16, 16px);
+}
+
+.product-detail__meta {
+  background: var(--kis-surface-container-low, #f8f9fa);
+  padding: var(--kis-spacing-20, 20px);
+  border-radius: var(--kis-corner-md, 8px);
+
+  h3 {
+    margin: 0 0 var(--kis-spacing-16, 16px);
+    font-size: 1.1rem;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--kis-spacing-12, 12px);
+    margin: 0;
+  }
+
+  dt {
+    font-weight: 600;
+    color: var(--kis-on-surface-variant, #666);
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-detail {
+    grid-template-columns: 1fr;
+    gap: var(--kis-spacing-32, 32px);
+  }
+
+  .product-detail__title,
+  .product-detail__price {
+    font-size: 1.5rem;
+  }
+
+  .product-detail__actions {
+    flex-direction: column;
+  }
+}

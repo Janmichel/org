@@ -1,0 +1,64 @@
+:host {
+  display: inline-block;
+  vertical-align: middle;
+
+  --shop-button-gap: var(--org-component-button-gap, 0.5rem);
+  --shop-button-min-width: var(--org-component-button-min-width, 4rem);
+  --shop-button-radius: var(--org-component-button-radius, 0.5rem);
+}
+
+:host(.shop-button-host--full-width) {
+  display: block;
+  width: 100%;
+}
+
+.shop-button {
+  min-width: var(--shop-button-min-width);
+  border-radius: var(--shop-button-radius);
+  white-space: nowrap;
+}
+
+.shop-button--full-width {
+  width: 100%;
+}
+
+.shop-button--small {
+  min-height: 2rem;
+  padding-inline: 0.75rem;
+}
+
+.shop-button--medium {
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+}
+
+.shop-button--large {
+  min-height: 3rem;
+  padding-inline: 1.25rem;
+}
+
+.shop-button--loading {
+  cursor: progress;
+}
+
+.shop-button__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--shop-button-gap);
+}
+
+.shop-button__icon,
+.shop-button__spinner {
+  flex: 0 0 auto;
+}
+
+.shop-button__icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  font-size: 1.125rem;
+}
+
+.shop-button__spinner {
+  --mdc-circular-progress-active-indicator-color: currentColor;
+}
