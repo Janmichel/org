@@ -76,6 +76,14 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
+    fragment: 'datepicker',
+    label: 'Datepicker',
+    title: 'Datepicker',
+    subtitle: 'Wrapper Material — date unique ou plage.',
+    icon: 'event',
+    group: 'secondary'
+  },
+  {
     fragment: 'org-card',
     label: 'Org card',
     title: 'Org card',

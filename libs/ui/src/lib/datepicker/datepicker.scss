@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+}
+
+:host([data-mode='range']) {
+  max-width: 28rem;
+}
+
+.org-datepicker__field {
+  width: 100%;
+}

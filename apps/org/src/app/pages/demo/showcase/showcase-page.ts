@@ -22,6 +22,7 @@ import {
 } from '@org/ui';
 import { DemoCard } from '../card/demo-card';
 import { DemoCalendar } from '../calendar/demo-calendar';
+import { DemoDatepicker } from '../datepicker/demo-datepicker';
 
 @Component({
   selector: 'app-showcase-page',
@@ -37,7 +38,8 @@ import { DemoCalendar } from '../calendar/demo-calendar';
     OrgTooltip,
     OrgTooltipTemplate,
     DemoCard,
-    DemoCalendar
+    DemoCalendar,
+    DemoDatepicker
   ],
   templateUrl: './showcase-page.html',
   styleUrl: './showcase-page.scss',

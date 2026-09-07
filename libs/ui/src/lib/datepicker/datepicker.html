@@ -1,0 +1,73 @@
+@if (isRange()) {
+  <mat-form-field
+    class="org-datepicker__field"
+    [appearance]="appearance()"
+    data-testId="org-datepicker-range-field"
+  >
+    @if (hasLabel()) {
+      <mat-label>{{ label() }}</mat-label>
+    }
+    <mat-date-range-input
+      [rangePicker]="rangePicker"
+      [disabled]="disabled()"
+      [required]="required()"
+      [min]="min()"
+      [max]="max()"
+    >
+      <input
+        matStartDate
+        [placeholder]="startPlaceholder()"
+        [ngModel]="start()"
+        (ngModelChange)="onStartChange($event)"
+        data-testId="org-datepicker-start"
+      />
+      <input
+        matEndDate
+        [placeholder]="endPlaceholder()"
+        [ngModel]="end()"
+        (ngModelChange)="onEndChange($event)"
+        data-testId="org-datepicker-end"
+      />
+    </mat-date-range-input>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="rangePicker"
+      data-testId="org-datepicker-range-toggle"
+    />
+    <mat-date-range-picker #rangePicker />
+    @if (hasHint()) {
+      <mat-hint>{{ hint() }}</mat-hint>
+    }
+  </mat-form-field>
+} @else {
+  <mat-form-field
+    class="org-datepicker__field"
+    [appearance]="appearance()"
+    data-testId="org-datepicker-field"
+  >
+    @if (hasLabel()) {
+      <mat-label>{{ label() }}</mat-label>
+    }
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [required]="required()"
+      [min]="min()"
+      [max]="max()"
+      [ngModel]="value()"
+      (ngModelChange)="onSingleChange($event)"
+      data-testId="org-datepicker-input"
+    />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker"
+      data-testId="org-datepicker-toggle"
+    />
+    <mat-datepicker #picker />
+    @if (hasHint()) {
+      <mat-hint>{{ hint() }}</mat-hint>
+    }
+  </mat-form-field>
+}

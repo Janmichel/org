@@ -1,0 +1,40 @@
+<div class="demo-datepicker">
+  <section class="demo-datepicker__section" aria-labelledby="datepicker-single-title">
+    <h3 id="datepicker-single-title">Date unique</h3>
+    <org-datepicker
+      label="Date de début"
+      placeholder="JJ/MM/AAAA"
+      hint="Locale fr-FR"
+      [min]="minDate"
+      [max]="maxDate"
+      [(value)]="single"
+    />
+    <p class="demo-datepicker__value">
+      Sélection :
+      {{ single() ? (single() | date: 'mediumDate' : 'fr-FR') : '—' }}
+    </p>
+  </section>
+
+  <section class="demo-datepicker__section" aria-labelledby="datepicker-range-title">
+    <h3 id="datepicker-range-title">Plage de dates</h3>
+    <org-datepicker
+      mode="range"
+      label="Période"
+      hint="Début → fin"
+      [(start)]="rangeStart"
+      [(end)]="rangeEnd"
+    />
+    <p class="demo-datepicker__value">
+      Du
+      {{
+        rangeStart()
+          ? (rangeStart() | date: 'mediumDate' : 'fr-FR')
+          : '—'
+      }}
+      au
+      {{
+        rangeEnd() ? (rangeEnd() | date: 'mediumDate' : 'fr-FR') : '—'
+      }}
+    </p>
+  </section>
+</div>

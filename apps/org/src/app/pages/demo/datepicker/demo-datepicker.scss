@@ -1,0 +1,21 @@
+.demo-datepicker {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.demo-datepicker__section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.demo-datepicker__section h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.demo-datepicker__value {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--mat-sys-on-surface-variant);
+}
