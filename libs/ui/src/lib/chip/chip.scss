@@ -1,0 +1,98 @@
+:host {
+  display: inline-flex;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.org-chip__set {
+  display: inline-flex;
+}
+
+.org-chip__surface {
+  max-width: 100%;
+  --org-chip-bg: var(--mat-sys-surface-container-high);
+  --org-chip-fg: var(--mat-sys-on-surface);
+  --org-chip-border: var(--mat-sys-outline-variant);
+  --mat-chip-elevated-container-color: var(--org-chip-bg);
+  --mat-chip-label-text-color: var(--org-chip-fg);
+  --mat-chip-disabled-label-text-color: color-mix(
+    in srgb,
+    var(--org-chip-fg) 38%,
+    transparent
+  );
+  --mat-chip-with-icon-icon-color: var(--org-chip-fg);
+  --mat-chip-with-avatar-avatar-color: var(--org-chip-fg);
+  --mat-chip-outline-width: 0;
+  --mat-chip-outline-color: transparent;
+}
+
+.org-chip__surface--bordered {
+  --mat-chip-elevated-container-color: color-mix(
+    in srgb,
+    var(--org-chip-bg) 35%,
+    transparent
+  );
+  --mat-chip-outline-width: 1px;
+  --mat-chip-outline-color: var(--org-chip-border);
+}
+
+.org-chip__surface--rounded {
+  --mat-chip-container-shape-radius: 999px;
+}
+
+.org-chip__surface[data-color='primary'] {
+  --org-chip-bg: var(--mat-sys-primary-container);
+  --org-chip-fg: var(--mat-sys-on-primary-container);
+  --org-chip-border: var(--mat-sys-primary);
+}
+
+.org-chip__surface[data-color='secondary'] {
+  --org-chip-bg: var(--mat-sys-secondary-container);
+  --org-chip-fg: var(--mat-sys-on-secondary-container);
+  --org-chip-border: var(--mat-sys-secondary);
+}
+
+.org-chip__surface[data-color='tertiary'] {
+  --org-chip-bg: var(--mat-sys-tertiary-container);
+  --org-chip-fg: var(--mat-sys-on-tertiary-container);
+  --org-chip-border: var(--mat-sys-tertiary);
+}
+
+.org-chip__surface[data-color='error'] {
+  --org-chip-bg: var(--mat-sys-error-container);
+  --org-chip-fg: var(--mat-sys-on-error-container);
+  --org-chip-border: var(--mat-sys-error);
+}
+
+.org-chip__surface[data-color='neutral'] {
+  --org-chip-bg: var(--mat-sys-surface-container-high);
+  --org-chip-fg: var(--mat-sys-on-surface-variant);
+  --org-chip-border: var(--mat-sys-outline);
+}
+
+.org-chip__surface[data-color='success'] {
+  --org-chip-bg: color-mix(
+    in srgb,
+    var(--mat-sys-tertiary-container) 70%,
+    var(--mat-sys-surface)
+  );
+  --org-chip-fg: var(--mat-sys-on-tertiary-container);
+  --org-chip-border: var(--mat-sys-tertiary);
+}
+
+.org-chip__surface[data-color='warning'] {
+  --org-chip-bg: color-mix(
+    in srgb,
+    var(--mat-sys-secondary-container) 65%,
+    var(--mat-sys-error-container)
+  );
+  --org-chip-fg: var(--mat-sys-on-secondary-container);
+  --org-chip-border: var(--mat-sys-secondary);
+}
+
+.org-chip__surface mat-icon[matChipAvatar] {
+  width: 1.125rem;
+  height: 1.125rem;
+  font-size: 1.125rem;
+  background: transparent;
+}

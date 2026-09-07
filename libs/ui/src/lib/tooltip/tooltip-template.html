@@ -1,0 +1,8 @@
+@if (hasEyebrow()) {
+  <p class="org-tooltip-template__eyebrow">{{ eyebrow() }}</p>
+}
+<p class="org-tooltip-template__title">{{ title() }}</p>
+@if (hasMeta()) {
+  <p class="org-tooltip-template__meta">{{ meta() }}</p>
+}
+<ng-content />

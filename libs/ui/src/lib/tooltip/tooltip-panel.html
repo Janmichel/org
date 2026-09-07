@@ -1,0 +1,16 @@
+@if (data.rich; as rich) {
+  <org-tooltip-template
+    [eyebrow]="rich.eyebrow || ''"
+    [title]="rich.title"
+    [meta]="rich.meta || ''"
+  />
+} @else {
+  @if (hasMessage) {
+    <p class="org-tooltip-panel__message">{{ data.message }}</p>
+  }
+  @if (data.content; as tpl) {
+    <div class="org-tooltip-panel__content">
+      <ng-container [ngTemplateOutlet]="tpl" />
+    </div>
+  }
+}

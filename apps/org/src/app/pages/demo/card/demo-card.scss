@@ -1,0 +1,280 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 22.5rem;
+}
+
+:host([data-variant='split']) {
+  max-width: 42rem;
+}
+
+:host([data-variant='featured']) {
+  max-width: 26rem;
+}
+
+.kis-article-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 1.25rem;
+  background: var(--mat-sys-surface-container);
+  box-shadow: 0 0.75rem 2rem
+    color-mix(in srgb, var(--mat-sys-on-surface) 8%, transparent);
+  outline: 0.125rem solid transparent;
+  outline-offset: 0.125rem;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    outline-color 200ms ease;
+}
+
+.kis-article-card:hover {
+  transform: translateY(-0.35rem);
+  box-shadow: 0 1.25rem 2.75rem
+    color-mix(in srgb, var(--mat-sys-on-surface) 14%, transparent);
+}
+
+.kis-article-card--selected {
+  outline-color: var(--mat-sys-primary);
+}
+
+.kis-article-card__select {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--mat-sys-primary);
+  cursor: pointer;
+}
+
+.kis-article-card__select:hover,
+.kis-article-card__select:focus-visible {
+  color: var(--mat-sys-primary);
+}
+
+.kis-article-card__select:focus-visible {
+  outline: 0.15rem solid var(--mat-sys-primary);
+  outline-offset: 0.1rem;
+}
+
+.kis-article-card__select-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 0 0.35rem rgb(255 255 255 / 0.95));
+}
+
+.kis-article-card__select--filled .kis-article-card__select-icon {
+  filter: none;
+}
+
+.kis-article-card__select--filled .kis-article-card__select-icon rect {
+  fill: var(--mat-sys-surface);
+}
+
+.kis-article-card__media {
+  position: relative;
+  overflow: hidden;
+  background: var(--mat-sys-surface-container-high);
+}
+
+.kis-article-card__image {
+  display: block;
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
+  transition: transform 420ms ease;
+}
+
+.kis-article-card:hover .kis-article-card__image {
+  transform: scale(1.06);
+}
+
+.kis-article-card__panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.kis-article-card__content {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.1rem 1.15rem 0.35rem;
+}
+
+.kis-article-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.kis-article-card__label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999rem;
+  background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+  color: var(--mat-sys-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.kis-article-card__date {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.85rem;
+}
+
+.kis-article-card__author {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--mat-sys-on-surface);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.kis-article-card__avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.kis-article-card__title {
+  margin: 0;
+  color: var(--mat-sys-on-surface);
+  font-size: 1.25rem;
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.kis-article-card__description {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.kis-article-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: auto;
+  margin: 0;
+  padding: 0.2rem 0.5rem 0.85rem 0.35rem;
+}
+
+.kis-article-card__read-time {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.kis-article-card--split {
+  flex-direction: row;
+  min-height: 16rem;
+}
+
+.kis-article-card--split .kis-article-card__media {
+  flex: 0 0 44%;
+}
+
+.kis-article-card--split .kis-article-card__image {
+  height: 100%;
+  min-height: 16rem;
+}
+
+.kis-article-card--split .kis-article-card__content {
+  gap: 0.7rem;
+  padding: 1.15rem 1.15rem 0.2rem;
+}
+
+.kis-article-card--overlay {
+  position: relative;
+}
+
+.kis-article-card--overlay .kis-article-card__media {
+  min-height: 22rem;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      color-mix(in srgb, var(--mat-sys-primary) 45%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      color-mix(in srgb, var(--mat-sys-tertiary) 40%, transparent),
+      transparent 50%
+    ),
+    var(--mat-sys-surface-container-high);
+}
+
+.kis-article-card--overlay .kis-article-card__image {
+  height: 22rem;
+}
+
+.kis-article-card--overlay .kis-article-card__panel {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.78);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0.5rem 1.5rem rgb(23 32 51 / 12%);
+}
+
+.kis-article-card--overlay .kis-article-card__content,
+.kis-article-card--overlay .kis-article-card__footer {
+  padding-inline: 1rem;
+}
+
+.kis-article-card--overlay .kis-article-card__content {
+  gap: 0.55rem;
+  padding-top: 0.95rem;
+  padding-bottom: 0;
+}
+
+.kis-article-card--overlay .kis-article-card__title {
+  font-size: 1.1rem;
+}
+
+.kis-article-card--overlay .kis-article-card__label--on-media {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  background: rgb(255 255 255 / 0.88);
+  backdrop-filter: blur(10px);
+}
+
+.kis-article-card--featured .kis-article-card__image {
+  height: 16rem;
+}
+
+.kis-article-card--featured .kis-article-card__panel {
+  margin-top: -1.75rem;
+  margin-inline: 0.85rem;
+  margin-bottom: 0.85rem;
+  border-radius: 1rem;
+  background: var(--mat-sys-surface-container);
+  box-shadow: 0 0.65rem 1.5rem
+    color-mix(in srgb, var(--mat-sys-on-surface) 10%, transparent);
+}
+
+.kis-article-card--featured .kis-article-card__content {
+  padding-top: 1.15rem;
+}

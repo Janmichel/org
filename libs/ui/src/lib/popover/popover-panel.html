@@ -1,0 +1,35 @@
+<div
+  class="org-popover-panel__shell"
+  role="dialog"
+  [attr.aria-modal]="false"
+  cdkTrapFocus
+  [cdkTrapFocusAutoCapture]="data.autoCaptureFocus"
+  [attr.id]="data.panelId"
+  [attr.aria-label]="data.title || 'Popover'"
+>
+  @if (data.showArrow) {
+    <span class="org-popover-panel__arrow" aria-hidden="true"></span>
+  }
+
+  <div class="org-popover-panel__header">
+    @if (data.title) {
+      <p class="org-popover-panel__title">{{ data.title }}</p>
+    } @else {
+      <span class="org-popover-panel__title-spacer"></span>
+    }
+    <button
+      type="button"
+      matIconButton
+      class="org-popover-panel__close"
+      data-testId="org-popover-close"
+      [attr.aria-label]="'Fermer' + (data.title ? ' ' + data.title : '')"
+      (click)="close()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="org-popover-panel__body">
+    <ng-container [ngTemplateOutlet]="data.content" />
+  </div>
+</div>

@@ -1,0 +1,12 @@
+/* Overlay CDK — styles globaux. */
+.org-popover-overlay {
+  z-index: 1000;
+}
+
+.org-popover-backdrop {
+  background: color-mix(in srgb, var(--mat-sys-scrim) 18%, transparent);
+}
+
+.org-popover-host {
+  cursor: pointer;
+}

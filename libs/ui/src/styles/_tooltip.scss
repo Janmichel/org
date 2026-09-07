@@ -1,0 +1,9 @@
+/* Overlay CDK — styles globaux minimaux. */
+.org-tooltip-overlay {
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.org-tooltip-host {
+  cursor: default;
+}

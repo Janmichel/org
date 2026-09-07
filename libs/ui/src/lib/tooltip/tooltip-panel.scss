@@ -1,0 +1,78 @@
+.org-tooltip-panel {
+  display: block;
+  box-sizing: border-box;
+  max-width: 16rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.5rem;
+  background: var(--org-tooltip-bg, var(--mat-sys-inverse-surface));
+  color: var(--org-tooltip-fg, var(--mat-sys-inverse-on-surface));
+  font: var(--mat-sys-body-small);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  box-shadow: var(--mat-sys-level2);
+  pointer-events: none;
+  transform-origin: center center;
+  will-change: opacity, transform;
+}
+
+.org-tooltip-panel--primary {
+  --org-tooltip-bg: var(--mat-sys-primary);
+  --org-tooltip-fg: var(--mat-sys-on-primary);
+}
+
+.org-tooltip-panel--secondary {
+  --org-tooltip-bg: var(--mat-sys-secondary);
+  --org-tooltip-fg: var(--mat-sys-on-secondary);
+}
+
+.org-tooltip-panel--tertiary {
+  --org-tooltip-bg: var(--mat-sys-tertiary);
+  --org-tooltip-fg: var(--mat-sys-on-tertiary);
+}
+
+.org-tooltip-panel--neutral {
+  --org-tooltip-bg: var(--mat-sys-surface-container-highest);
+  --org-tooltip-fg: var(--mat-sys-on-surface);
+}
+
+.org-tooltip-panel--success {
+  --org-tooltip-bg: var(--mat-sys-tertiary-container);
+  --org-tooltip-fg: var(--mat-sys-on-tertiary-container);
+}
+
+.org-tooltip-panel--warning {
+  --org-tooltip-bg: var(--mat-sys-secondary-container);
+  --org-tooltip-fg: var(--mat-sys-on-secondary-container);
+}
+
+.org-tooltip-panel--error {
+  --org-tooltip-bg: var(--mat-sys-error);
+  --org-tooltip-fg: var(--mat-sys-on-error);
+}
+
+.org-tooltip-panel--inverse {
+  --org-tooltip-bg: var(--mat-sys-inverse-surface);
+  --org-tooltip-fg: var(--mat-sys-inverse-on-surface);
+}
+
+.org-tooltip-panel--bounce {
+  transform-origin: left center;
+  border-radius: 0.35rem 0.75rem 0.75rem 0.35rem;
+}
+
+.org-tooltip-panel--rich {
+  max-width: 18rem;
+  padding: 0.85rem 1rem;
+}
+
+.org-tooltip-panel__message {
+  margin: 0;
+}
+
+.org-tooltip-panel__content {
+  margin: 0;
+}
+
+.org-tooltip-panel__message + .org-tooltip-panel__content {
+  margin-top: 0.35rem;
+}

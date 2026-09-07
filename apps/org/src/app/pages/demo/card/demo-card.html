@@ -1,0 +1,112 @@
+<mat-card
+  class="kis-article-card"
+  [class.kis-article-card--split]="variant() === 'split'"
+  [class.kis-article-card--overlay]="variant() === 'overlay'"
+  [class.kis-article-card--featured]="variant() === 'featured'"
+  [class.kis-article-card--selected]="selected()"
+  appearance="raised"
+>
+  <div class="kis-article-card__media">
+    <button
+      type="button"
+      class="kis-article-card__select"
+      [class.kis-article-card__select--filled]="selectFilled()"
+      data-testId="org-card-select"
+      [attr.aria-pressed]="selected()"
+      [attr.aria-label]="'Sélectionner ' + title()"
+      (click)="toggleSelected()"
+    >
+      <svg
+        class="kis-article-card__select-icon"
+        viewBox="0 0 20 20"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <rect
+          x="1.75"
+          y="1.75"
+          width="16.5"
+          height="16.5"
+          rx="4.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+        />
+        @if (selected()) {
+          <path
+            d="M5.4 10.2 8.4 13.1 14.6 6.6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        }
+      </svg>
+    </button>
+
+    <img
+      class="kis-article-card__image"
+      [src]="imageSrc()"
+      [alt]="imageAlt()"
+      width="640"
+      height="360"
+    />
+
+    @if (variant() === 'overlay' && label()) {
+      <span class="kis-article-card__label kis-article-card__label--on-media">
+        {{ label() }}
+      </span>
+    }
+  </div>
+
+  <div class="kis-article-card__panel">
+    <mat-card-content class="kis-article-card__content">
+      @if (variant() !== 'overlay') {
+        <div class="kis-article-card__meta">
+          @if (label()) {
+            <span class="kis-article-card__label">{{ label() }}</span>
+          }
+          @if (date()) {
+            <time class="kis-article-card__date">{{ date() }}</time>
+          }
+        </div>
+      }
+
+      @if (author(); as cardAuthor) {
+        <div class="kis-article-card__author">
+          <img
+            class="kis-article-card__avatar"
+            [src]="cardAuthor.avatarSrc"
+            [alt]="cardAuthor.avatarAlt || cardAuthor.name"
+            width="32"
+            height="32"
+          />
+          <span>{{ cardAuthor.name }}</span>
+        </div>
+      }
+
+      <h3 class="kis-article-card__title">{{ title() }}</h3>
+
+      @if (description() && variant() !== 'overlay') {
+        <p class="kis-article-card__description">{{ description() }}</p>
+      }
+    </mat-card-content>
+
+    <mat-card-actions class="kis-article-card__footer">
+      <button
+        type="button"
+        matButton
+        data-testId="org-card-read-more"
+        (click)="actionClick.emit($event)"
+      >
+        {{ actionLabel() }}
+        <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+      </button>
+
+      @if (meta()) {
+        <span class="kis-article-card__read-time">{{ meta() }}</span>
+      }
+    </mat-card-actions>
+  </div>
+</mat-card>

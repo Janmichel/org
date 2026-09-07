@@ -1,0 +1,28 @@
+<article class="demo-page">
+  <header class="demo-page__intro">
+    <h2>Card</h2>
+    <p>Carte média, article et bouton d’action.</p>
+  </header>
+
+  <section class="demo-page__preview" aria-label="Aperçus Card">
+    <org-card
+      variant="article"
+      [imageSrc]="articleCard.imageSrc"
+      [imageAlt]="articleCard.imageAlt"
+      [label]="articleCard.label"
+      [title]="articleCard.title"
+      [description]="articleCard.description"
+      [author]="articleCard.author"
+      [meta]="articleCard.meta"
+    />
+
+    <org-card
+      variant="cta"
+      [imageSrc]="ctaCard.imageSrc"
+      [imageAlt]="ctaCard.imageAlt"
+      [title]="ctaCard.title"
+      [description]="ctaCard.description"
+      [actionLabel]="ctaCard.actionLabel"
+    />
+  </section>
+</article>

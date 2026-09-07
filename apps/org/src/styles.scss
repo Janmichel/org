@@ -1,0 +1,199 @@
+@use '../../../libs/ui/src/styles/theme';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-large);
+}
+
+button {
+  font: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.kis-demo-frame {
+  display: flex;
+  gap: 1.25rem;
+  min-height: 100vh;
+  padding: 0.85rem;
+}
+
+.kis-demo-rail {
+  position: sticky;
+  top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 6rem;
+  width: 6rem;
+  min-height: calc(100vh - 1.7rem);
+  padding: 1.15rem 0.5rem 0.9rem;
+  border-radius: 1.5rem;
+  background: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  box-shadow: 0 1rem 2.5rem
+    color-mix(in srgb, var(--mat-sys-primary) 35%, transparent);
+}
+
+.kis-demo-rail__brand {
+  margin: 0 0 1.35rem;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+.kis-demo-rail__nav {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.kis-demo-rail__nav--secondary {
+  margin-top: 1.1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgb(255 255 255 / 0.22);
+}
+
+.kis-demo-rail__link {
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: 0.9rem;
+  color: inherit;
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.kis-demo-rail__link:hover,
+.kis-demo-rail__link:focus-visible {
+  background: rgb(255 255 255 / 0.12);
+  outline: none;
+}
+
+.kis-demo-rail__link:focus-visible {
+  box-shadow: 0 0 0 0.15rem rgb(255 255 255 / 0.7);
+}
+
+.kis-demo-rail__link.is-active {
+  background: rgb(255 255 255 / 0.2);
+}
+
+.kis-demo-rail__icon {
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.kis-demo-rail__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 0.1rem solid currentColor;
+  border-radius: 50%;
+}
+
+.kis-demo-rail__dot.is-accent {
+  background: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.kis-demo-rail__footer {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.kis-demo-main {
+  flex: 1;
+  min-width: 0;
+  padding: 1.15rem 1rem 2rem 0.15rem;
+}
+
+.kis-demo-header {
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.kis-demo-eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--mat-sys-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.kis-demo-header h1 {
+  margin: 0;
+  font: var(--mat-sys-headline-small);
+}
+
+.kis-demo-subtitle {
+  margin: 0.75rem 0 0;
+  max-width: 36rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.checkbox-board--round .mdc-checkbox__background {
+  border-radius: 50%;
+}
+
+app-demo-calendar .kis-calendar__footer .mat-mdc-button-base {
+  width: 100%;
+}
+
+@media (max-width: 48rem) {
+  .kis-demo-frame {
+    flex-direction: column;
+    padding: 0.65rem;
+  }
+
+  .kis-demo-rail {
+    position: relative;
+    top: 0;
+    flex: none;
+    width: 100%;
+    min-height: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.15rem;
+    padding: 0.75rem;
+  }
+
+  .kis-demo-rail__brand {
+    flex: 1 0 100%;
+    margin: 0 0 0.35rem;
+    text-align: left;
+    padding-inline: 0.4rem;
+  }
+
+  .kis-demo-rail__nav,
+  .kis-demo-rail__nav--secondary {
+    display: contents;
+  }
+
+  .kis-demo-rail__nav--secondary {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .kis-demo-rail__footer {
+    display: none;
+  }
+}
+

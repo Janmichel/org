@@ -1,0 +1,15 @@
+<mat-chip-set class="org-chip__set" role="presentation">
+  <mat-chip
+    class="org-chip__surface"
+    data-testId="org-chip"
+    [disabled]="disabled()"
+    [class.org-chip__surface--bordered]="bordered()"
+    [class.org-chip__surface--rounded]="rounded()"
+    [attr.data-color]="color()"
+  >
+    @if (hasIcon()) {
+      <mat-icon matChipAvatar aria-hidden="true">{{ icon() }}</mat-icon>
+    }
+    {{ label() }}
+  </mat-chip>
+</mat-chip-set>

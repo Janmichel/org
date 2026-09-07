@@ -1,0 +1,88 @@
+<section
+  class="kis-calendar"
+  role="group"
+  [attr.aria-label]="'Calendrier ' + monthLabel()"
+>
+  <p class="kis-calendar__live" aria-live="polite">{{ rangeLabel() }}</p>
+
+  <header class="kis-calendar__header">
+    <button
+      type="button"
+      matIconButton
+      data-testId="org-calendar-prev"
+      [attr.aria-label]="'Mois précédent, actuellement ' + monthLabel()"
+      (click)="previousMonth()"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <h2 class="kis-calendar__title">{{ monthLabel() }}</h2>
+
+    <button
+      type="button"
+      matIconButton
+      data-testId="org-calendar-next"
+      [attr.aria-label]="'Mois suivant, actuellement ' + monthLabel()"
+      (click)="nextMonth()"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </header>
+
+  <div class="kis-calendar__grid" role="grid" [attr.aria-label]="monthLabel()">
+    <div class="kis-calendar__weekdays" role="row">
+      @for (weekday of weekdays; track weekday) {
+        <span class="kis-calendar__weekday" role="columnheader">{{ weekday }}</span>
+      }
+    </div>
+
+    <div class="kis-calendar__days">
+      @for (week of weeks(); track week[0].date.toISOString()) {
+        <div class="kis-calendar__row" role="row">
+          @for (cell of week; track cell.date.toISOString()) {
+            <button
+              type="button"
+              class="kis-calendar__day"
+              role="gridcell"
+              [class.kis-calendar__day--outside]="!cell.isCurrentMonth"
+              [class.kis-calendar__day--focused]="cell.isFocused"
+              [class.kis-calendar__day--range-start]="cell.isRangeStart"
+              [class.kis-calendar__day--range-end]="cell.isRangeEnd"
+              [class.kis-calendar__day--in-range]="cell.isInRange"
+              [attr.aria-selected]="cell.isRangeStart || cell.isRangeEnd || cell.isInRange"
+              [attr.aria-label]="cell.date | date:'fullDate'"
+              [attr.data-testId]="
+                cell.isCurrentMonth ? 'org-calendar-day-' + cell.day : null
+              "
+              (click)="selectDay(cell)"
+            >
+              <span class="kis-calendar__num">{{ cell.day }}</span>
+              @if (cell.hasIndicator) {
+                <span class="kis-calendar__dot" aria-hidden="true"></span>
+              }
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <footer class="kis-calendar__footer">
+    <button
+      type="button"
+      matButton="filled"
+      data-testId="org-calendar-apply"
+      (click)="applySelection()"
+    >
+      Button text
+    </button>
+    <button
+      type="button"
+      matButton="outlined"
+      data-testId="org-calendar-cancel"
+      (click)="cancelSelection()"
+    >
+      Button text
+    </button>
+  </footer>
+</section>

@@ -1,0 +1,81 @@
+<mat-card class="org-card__surface" appearance="raised">
+  <div class="org-card__media">
+    <img
+      class="org-card__image"
+      [src]="imageSrc()"
+      [alt]="imageAlt()"
+      width="336"
+      height="188"
+    />
+
+    @if (isArticle()) {
+    <button
+      type="button"
+      class="org-card__badge"
+      matIconButton
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <mat-icon>radio_button_unchecked</mat-icon>
+    </button>
+
+    <button
+      type="button"
+      class="org-card__play"
+      matIconButton
+      data-testId="org-card-play"
+      [attr.aria-label]="playAriaLabel()"
+      (click)="playClick.emit($event)"
+    >
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    }
+  </div>
+
+  <mat-card-content class="org-card__body">
+    @if (isCta()) {
+    <span class="org-card__leading" aria-hidden="true">
+      <mat-icon>{{ leadingIcon() }}</mat-icon>
+    </span>
+    } @if (label() && isArticle()) {
+    <p class="org-card__label">{{ label() }}</p>
+    }
+
+    <h3 class="org-card__title">{{ title() }}</h3>
+
+    @if (description()) {
+    <p class="org-card__description">{{ description() }}</p>
+    }
+  </mat-card-content>
+
+  @if (isArticle() && (hasAuthor() || meta())) {
+  <mat-card-actions class="org-card__footer org-card__footer--meta">
+    @if (author(); as cardAuthor) {
+    <div class="org-card__author">
+      <img
+        class="org-card__avatar"
+        [src]="cardAuthor.avatarSrc"
+        [alt]="cardAuthor.avatarAlt || cardAuthor.name"
+        width="24"
+        height="24"
+      />
+      <span>{{ cardAuthor.name }}</span>
+    </div>
+    } @if (meta()) {
+    <span class="org-card__meta">{{ meta() }}</span>
+    }
+  </mat-card-actions>
+  } @if (isCta() && hasAction()) {
+  <mat-card-actions class="org-card__footer">
+    <button
+      type="button"
+      matButton="filled"
+      data-testId="org-card-action"
+      (click)="actionClick.emit($event)"
+    >
+      <mat-icon>chevron_left</mat-icon>
+      {{ actionLabel() }}
+    </button>
+  </mat-card-actions>
+  }
+</mat-card>

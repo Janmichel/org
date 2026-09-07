@@ -1,0 +1,729 @@
+<div class="showcase">
+  <section id="card" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Contenu</p>
+      <h2>Article card</h2>
+      <p>
+        Quatre mises en page, avec checkbox 20×20 en haut à droite
+        (`selectFilled` optionnel pour le fond contrasté).
+        @if (selectedCount() === 0) {
+          Aucune card sélectionnée.
+        } @else {
+          {{ selectedCount() }}
+          {{ selectedCount() > 1 ? 'cards sélectionnées.' : 'card sélectionnée.' }}
+        }
+      </p>
+    </div>
+
+    <div class="card-gallery">
+      <article class="card-gallery__item">
+        <h3>Classique</h3>
+        <app-demo-card
+          variant="article"
+          [(selected)]="articleSelected"
+          [selectFilled]="true"
+          [imageSrc]="article.imageSrc"
+          [imageAlt]="article.imageAlt"
+          [label]="article.label"
+          [date]="article.date"
+          [author]="author"
+          [title]="article.title"
+          [description]="article.description"
+          [actionLabel]="article.actionLabel"
+          [meta]="article.meta"
+        />
+      </article>
+
+      <article class="card-gallery__item card-gallery__item--wide">
+        <h3>Split</h3>
+        <app-demo-card
+          variant="split"
+          [(selected)]="splitSelected"
+          [imageSrc]="split.imageSrc"
+          [imageAlt]="split.imageAlt"
+          [label]="split.label"
+          [date]="split.date"
+          [author]="author"
+          [title]="split.title"
+          [description]="split.description"
+          [actionLabel]="split.actionLabel"
+          [meta]="split.meta"
+        />
+      </article>
+
+      <article class="card-gallery__item">
+        <h3>Overlay</h3>
+        <app-demo-card
+          variant="overlay"
+          [(selected)]="overlaySelected"
+          [selectFilled]="true"
+          [imageSrc]="overlay.imageSrc"
+          [imageAlt]="overlay.imageAlt"
+          [label]="overlay.label"
+          [author]="author"
+          [title]="overlay.title"
+          [actionLabel]="overlay.actionLabel"
+          [meta]="overlay.meta"
+        />
+      </article>
+
+      <article class="card-gallery__item">
+        <h3>Featured</h3>
+        <app-demo-card
+          variant="featured"
+          [(selected)]="featuredSelected"
+          [imageSrc]="featured.imageSrc"
+          [imageAlt]="featured.imageAlt"
+          [label]="featured.label"
+          [date]="featured.date"
+          [author]="author"
+          [title]="featured.title"
+          [description]="featured.description"
+          [actionLabel]="featured.actionLabel"
+          [meta]="featured.meta"
+        />
+      </article>
+    </div>
+  </section>
+
+  <section id="calendar" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Saisie</p>
+      <h2>Date range</h2>
+      <p>Premier clic pour le début, second clic pour la fin.</p>
+    </div>
+    <app-demo-calendar />
+  </section>
+
+  <section id="button" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Actions</p>
+      <h2>Button</h2>
+      <p>Texte, icône à droite, à gauche, icône seule. Halo au focus clavier.</p>
+    </div>
+
+    @for (shape of buttonShapes; track shape) {
+      <h3 class="demo-panel__kicker">
+        {{ shape === 'square' ? 'Angles droits' : 'Arrondi' }}
+      </h3>
+      <div class="button-board" [attr.data-shape]="shape">
+        @for (variant of buttonVariants; track variant) {
+          <div class="button-board__row">
+            <button type="button" [matButton]="variant">Button text</button>
+            <button type="button" [matButton]="variant">
+              Button text
+              <mat-icon iconPositionEnd>chevron_right</mat-icon>
+            </button>
+            <button type="button" [matButton]="variant">
+              <mat-icon>chevron_left</mat-icon>
+              Button text
+            </button>
+            <button
+              type="button"
+              [matButton]="variant"
+              aria-label="Ouvrir le document"
+            >
+              <mat-icon>menu_book</mat-icon>
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </section>
+
+  <section id="checkbox" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Formulaire</p>
+      <h2>Checkbox</h2>
+      <p>Carré et rond, coché, indéterminé, désactivé.</p>
+    </div>
+
+    <div class="checkbox-board">
+      <mat-checkbox aria-label="Non cochée" />
+      <mat-checkbox aria-label="Cochée" [ngModel]="true" />
+      <mat-checkbox aria-label="Indéterminée" [indeterminate]="true" />
+      <mat-checkbox aria-label="Désactivée" disabled />
+    </div>
+
+    <div class="checkbox-board checkbox-board--round">
+      <mat-checkbox aria-label="Ronde non cochée" />
+      <mat-checkbox aria-label="Ronde cochée" [ngModel]="true" />
+      <mat-checkbox aria-label="Ronde indéterminée" [indeterminate]="true" />
+      <mat-checkbox aria-label="Ronde désactivée" disabled />
+    </div>
+  </section>
+
+  <section id="toggle" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Formulaire</p>
+      <h2>Toggle</h2>
+    </div>
+    <div class="stack">
+      <mat-slide-toggle>Mode sombre</mat-slide-toggle>
+      <mat-slide-toggle disabled>Désactivé</mat-slide-toggle>
+    </div>
+  </section>
+
+  <section id="chip" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Statut</p>
+      <h2>Chip</h2>
+      <p>Couleurs, icône optionnelle, plein, borduré ou arrondi.</p>
+    </div>
+
+    <h3 class="demo-panel__kicker">Plein</h3>
+    <div class="chip-board" aria-label="Chips plein">
+      @for (color of chipColors; track color) {
+        <org-chip [color]="color" [label]="color" />
+        <org-chip [color]="color" [label]="color" icon="check_circle" />
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Borduré</h3>
+    <div class="chip-board" aria-label="Chips bordurés">
+      @for (color of chipColors; track color) {
+        <org-chip [color]="color" [label]="color" [bordered]="true" />
+        <org-chip
+          [color]="color"
+          [label]="color"
+          icon="local_offer"
+          [bordered]="true"
+        />
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Border radius</h3>
+    <div class="chip-board" aria-label="Chips arrondis">
+      <org-chip color="primary" label="Arrondi" [rounded]="true" />
+      <org-chip
+        color="secondary"
+        label="Arrondi + icône"
+        icon="favorite"
+        [rounded]="true"
+      />
+      <org-chip
+        color="tertiary"
+        label="Arrondi + bordure"
+        icon="local_offer"
+        [bordered]="true"
+        [rounded]="true"
+      />
+    </div>
+
+    <h3 class="demo-panel__kicker">États</h3>
+    <div class="chip-board" aria-label="États chip">
+      <org-chip color="primary" label="Actif" icon="check_circle" />
+      <org-chip color="neutral" label="Désactivé" [disabled]="true" />
+      <org-chip
+        color="error"
+        label="Erreur"
+        icon="error"
+        [bordered]="true"
+      />
+    </div>
+  </section>
+
+  <section id="tooltip" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Feedback</p>
+      <h2>Tooltip</h2>
+      <p>
+        Couleurs, animations, template structuré ou contenu custom.
+      </p>
+    </div>
+
+    <h3 class="demo-panel__kicker">Couleurs</h3>
+    <div class="chip-board" aria-label="Tooltips couleurs">
+      @for (color of tooltipColors; track color) {
+        <button
+          type="button"
+          matButton="tonal"
+          [orgTooltip]="'Couleur ' + color"
+          [orgTooltipColor]="color"
+        >
+          {{ color }}
+        </button>
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Animations</h3>
+    <div class="chip-board" aria-label="Tooltips animations">
+      @for (animation of tooltipAnimations; track animation) {
+        <button
+          type="button"
+          matButton="outlined"
+          [orgTooltip]="'Animation ' + animation"
+          orgTooltipColor="primary"
+          [orgTooltipAnimation]="animation"
+          orgTooltipPosition="above"
+        >
+          {{ animation }}
+        </button>
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Étiquette bounce</h3>
+    <div class="chip-board" aria-label="Tooltip bounce étiquette">
+      <org-chip
+        orgTooltip="Nouveau"
+        orgTooltipColor="primary"
+        orgTooltipAnimation="bounce"
+        orgTooltipPosition="above"
+        color="primary"
+        label="Promo"
+        icon="local_offer"
+        [rounded]="true"
+      />
+      <button
+        type="button"
+        matButton="filled"
+        orgTooltip="Étiquette promo — −20 %"
+        orgTooltipColor="error"
+        orgTooltipAnimation="bounce"
+        orgTooltipPosition="above"
+      >
+        Voir l’offre
+      </button>
+    </div>
+
+    <h3 class="demo-panel__kicker">Sur chips</h3>
+    <div class="chip-board" aria-label="Tooltips sur chips">
+      <org-chip
+        orgTooltip="Compte actif et synchronisé"
+        orgTooltipColor="success"
+        orgTooltipAnimation="scale"
+        color="success"
+        label="Actif"
+        icon="check_circle"
+      />
+      <org-chip
+        orgTooltip="Action requise avant publication"
+        orgTooltipPosition="below"
+        orgTooltipColor="warning"
+        color="warning"
+        label="Attention"
+        icon="warning"
+        [bordered]="true"
+      />
+      <org-chip
+        orgTooltip="Impossible de poursuivre"
+        orgTooltipColor="error"
+        orgTooltipAnimation="slide"
+        color="error"
+        label="Erreur"
+        icon="error"
+        [rounded]="true"
+      />
+    </div>
+
+    <h3 class="demo-panel__kicker">Template riche</h3>
+    <div class="chip-board" aria-label="Tooltips template">
+      <button
+        type="button"
+        matButton="filled"
+        orgTooltip
+        [orgTooltipRich]="syncTooltipRich"
+        orgTooltipColor="primary"
+        orgTooltipAnimation="scale"
+      >
+        Détails sync
+      </button>
+      <org-chip
+        orgTooltip
+        [orgTooltipContent]="authorTooltip"
+        orgTooltipColor="neutral"
+        color="secondary"
+        label="Auteur"
+        icon="person"
+        [bordered]="true"
+      />
+    </div>
+
+    <ng-template #authorTooltip>
+      <org-tooltip-template
+        eyebrow="Profil"
+        title="Olivia Quinn"
+        meta="UX writer · Studio Design"
+      />
+    </ng-template>
+  </section>
+
+  <section id="popover" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Overlay</p>
+      <h2>Popover</h2>
+      <p>
+        Clic ou hover, sans backdrop, flèche vers le déclencheur.
+      </p>
+    </div>
+
+    <h3 class="demo-panel__kicker">Clic</h3>
+    <div class="chip-board" aria-label="Exemples popover clic">
+      <button
+        type="button"
+        matButton="filled"
+        #invitePop="orgPopover"
+        [orgPopover]="inviteForm"
+        orgPopoverTitle="Inviter un membre"
+        orgPopoverPosition="below"
+        orgPopoverColor="surface"
+      >
+        Ouvrir le formulaire
+      </button>
+
+      <button
+        type="button"
+        matButton="tonal"
+        #projectPop="orgPopover"
+        [orgPopover]="projectFormTpl"
+        orgPopoverTitle="Nouveau projet"
+        orgPopoverPosition="below"
+        orgPopoverColor="surface"
+      >
+        Popover complexe
+      </button>
+
+      <org-chip
+        #notePop="orgPopover"
+        [orgPopover]="noteForm"
+        orgPopoverTitle="Ajouter une note"
+        orgPopoverPosition="after"
+        orgPopoverColor="primary"
+        color="primary"
+        label="Note"
+        icon="edit_note"
+        [rounded]="true"
+      />
+
+      @if (inviteSent()) {
+        <span class="popover-feedback">Invitation enregistrée.</span>
+      }
+      @if (projectSaved()) {
+        <span class="popover-feedback">Projet enregistré.</span>
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Hover</h3>
+    <div class="chip-board" aria-label="Exemples popover hover">
+      <button
+        type="button"
+        matButton="tonal"
+        [orgPopover]="hoverForm"
+        orgPopoverTrigger="hover"
+        orgPopoverTitle="Édition rapide"
+        orgPopoverPosition="below"
+        orgPopoverColor="surface"
+      >
+        Survole pour éditer
+      </button>
+      <org-chip
+        [orgPopover]="hoverForm"
+        orgPopoverTrigger="hover"
+        orgPopoverTitle="Édition rapide"
+        orgPopoverPosition="after"
+        orgPopoverColor="secondary"
+        color="secondary"
+        label="Hover"
+        icon="touch_app"
+        [bordered]="true"
+      />
+    </div>
+
+    <ng-template #inviteForm>
+      <form
+        class="popover-form"
+        (ngSubmit)="submitInvite(invitePop)"
+      >
+        <label class="popover-form__field">
+          <span>Email</span>
+          <input
+            type="email"
+            name="email"
+            required
+            autocomplete="email"
+            [ngModel]="inviteEmail()"
+            (ngModelChange)="inviteEmail.set($event)"
+            placeholder="alex@studio.com"
+          />
+        </label>
+        <label class="popover-form__field">
+          <span>Rôle</span>
+          <select
+            name="role"
+            [ngModel]="inviteRole()"
+            (ngModelChange)="inviteRole.set($event)"
+          >
+            <option value="viewer">Lecteur</option>
+            <option value="editor">Éditeur</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+        <div class="popover-form__actions">
+          <button type="button" matButton (click)="invitePop.hide()">
+            Annuler
+          </button>
+          <button type="submit" matButton="filled">Envoyer</button>
+        </div>
+      </form>
+    </ng-template>
+
+    <ng-template #projectFormTpl>
+      <form
+        class="popover-form popover-form--complex"
+        (ngSubmit)="submitProject(projectPop)"
+      >
+        <section class="popover-form__section">
+          <h4 class="popover-form__section-title">Projet</h4>
+          <label class="popover-form__field">
+            <span>Nom du projet</span>
+            <input
+              type="text"
+              name="projectName"
+              required
+              [ngModel]="projectForm.name()"
+              (ngModelChange)="projectForm.name.set($event)"
+            />
+          </label>
+          <div class="popover-form__row">
+            <label class="popover-form__field">
+              <span>Client</span>
+              <input
+                type="text"
+                name="client"
+                [ngModel]="projectForm.client()"
+                (ngModelChange)="projectForm.client.set($event)"
+              />
+            </label>
+            <label class="popover-form__field">
+              <span>Équipe</span>
+              <select
+                name="team"
+                [ngModel]="projectForm.team()"
+                (ngModelChange)="projectForm.team.set($event)"
+              >
+                <option value="product">Product</option>
+                <option value="design">Design</option>
+                <option value="eng">Engineering</option>
+                <option value="ops">Ops</option>
+              </select>
+            </label>
+          </div>
+          <label class="popover-form__field">
+            <span>Description</span>
+            <textarea
+              name="description"
+              rows="3"
+              [ngModel]="projectForm.description()"
+              (ngModelChange)="projectForm.description.set($event)"
+            ></textarea>
+          </label>
+        </section>
+
+        <section class="popover-form__section">
+          <h4 class="popover-form__section-title">Contact</h4>
+          <label class="popover-form__field">
+            <span>Owner</span>
+            <input
+              type="text"
+              name="owner"
+              [ngModel]="projectForm.owner()"
+              (ngModelChange)="projectForm.owner.set($event)"
+            />
+          </label>
+          <div class="popover-form__row">
+            <label class="popover-form__field">
+              <span>Email</span>
+              <input
+                type="email"
+                name="ownerEmail"
+                [ngModel]="projectForm.email()"
+                (ngModelChange)="projectForm.email.set($event)"
+              />
+            </label>
+            <label class="popover-form__field">
+              <span>Téléphone</span>
+              <input
+                type="tel"
+                name="phone"
+                [ngModel]="projectForm.phone()"
+                (ngModelChange)="projectForm.phone.set($event)"
+              />
+            </label>
+          </div>
+        </section>
+
+        <section class="popover-form__section">
+          <h4 class="popover-form__section-title">Planning & budget</h4>
+          <div class="popover-form__row">
+            <label class="popover-form__field">
+              <span>Début</span>
+              <input
+                type="date"
+                name="startDate"
+                [ngModel]="projectForm.startDate()"
+                (ngModelChange)="projectForm.startDate.set($event)"
+              />
+            </label>
+            <label class="popover-form__field">
+              <span>Fin</span>
+              <input
+                type="date"
+                name="endDate"
+                [ngModel]="projectForm.endDate()"
+                (ngModelChange)="projectForm.endDate.set($event)"
+              />
+            </label>
+          </div>
+          <div class="popover-form__row">
+            <label class="popover-form__field">
+              <span>Priorité</span>
+              <select
+                name="priority"
+                [ngModel]="projectForm.priority()"
+                (ngModelChange)="projectForm.priority.set($event)"
+              >
+                <option value="low">Basse</option>
+                <option value="medium">Moyenne</option>
+                <option value="high">Haute</option>
+                <option value="critical">Critique</option>
+              </select>
+            </label>
+            <label class="popover-form__field">
+              <span>Budget (€)</span>
+              <input
+                type="number"
+                name="budget"
+                min="0"
+                step="500"
+                [ngModel]="projectForm.budget()"
+                (ngModelChange)="projectForm.budget.set($event)"
+              />
+            </label>
+          </div>
+        </section>
+
+        <section class="popover-form__section">
+          <h4 class="popover-form__section-title">Notifications</h4>
+          <label class="popover-form__check">
+            <input
+              type="checkbox"
+              name="notifyEmail"
+              [ngModel]="projectForm.notifyEmail()"
+              (ngModelChange)="projectForm.notifyEmail.set($event)"
+            />
+            <span>Email de suivi</span>
+          </label>
+          <label class="popover-form__check">
+            <input
+              type="checkbox"
+              name="notifySlack"
+              [ngModel]="projectForm.notifySlack()"
+              (ngModelChange)="projectForm.notifySlack.set($event)"
+            />
+            <span>Alertes Slack</span>
+          </label>
+          <label class="popover-form__check">
+            <input
+              type="checkbox"
+              name="notifyDigest"
+              [ngModel]="projectForm.notifyDigest()"
+              (ngModelChange)="projectForm.notifyDigest.set($event)"
+            />
+            <span>Digest hebdomadaire</span>
+          </label>
+          <label class="popover-form__check">
+            <input
+              type="checkbox"
+              name="publicLink"
+              [ngModel]="projectForm.publicLink()"
+              (ngModelChange)="projectForm.publicLink.set($event)"
+            />
+            <span>Lien public en lecture seule</span>
+          </label>
+        </section>
+
+        <section class="popover-form__section">
+          <h4 class="popover-form__section-title">Notes internes</h4>
+          <label class="popover-form__field">
+            <span>Commentaires</span>
+            <textarea
+              name="notes"
+              rows="4"
+              placeholder="Risques, dépendances, décisions…"
+              [ngModel]="projectForm.notes()"
+              (ngModelChange)="projectForm.notes.set($event)"
+            ></textarea>
+          </label>
+        </section>
+
+        <div class="popover-form__actions popover-form__actions--sticky">
+          <button type="button" matButton (click)="projectPop.hide()">
+            Annuler
+          </button>
+          <button type="submit" matButton="filled">Créer le projet</button>
+        </div>
+      </form>
+    </ng-template>
+
+    <ng-template #noteForm>
+      <form class="popover-form" (ngSubmit)="notePop.hide()">
+        <label class="popover-form__field">
+          <span>Message</span>
+          <textarea
+            name="note"
+            rows="3"
+            placeholder="Une note rapide…"
+          ></textarea>
+        </label>
+        <div class="popover-form__actions">
+          <button type="submit" matButton="filled">Enregistrer</button>
+        </div>
+      </form>
+    </ng-template>
+
+    <ng-template #hoverForm>
+      <form class="popover-form" (ngSubmit)="$event.preventDefault()">
+        <label class="popover-form__field">
+          <span>Statut</span>
+          <select name="status">
+            <option value="draft">Brouillon</option>
+            <option value="review">Revue</option>
+            <option value="done">Terminé</option>
+          </select>
+        </label>
+        <label class="popover-form__field">
+          <span>Commentaire</span>
+          <input type="text" name="comment" placeholder="Optionnel" />
+        </label>
+      </form>
+    </ng-template>
+  </section>
+
+  <section id="org-card" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Lib</p>
+      <h2>Org card</h2>
+      <p>Composant réutilisable @org/ui.</p>
+    </div>
+    <div class="card-gallery">
+      <org-card
+        variant="article"
+        [imageSrc]="orgArticleCard.imageSrc"
+        [imageAlt]="orgArticleCard.imageAlt"
+        [label]="orgArticleCard.label"
+        [title]="orgArticleCard.title"
+        [description]="orgArticleCard.description"
+        [author]="orgArticleCard.author"
+        [meta]="orgArticleCard.meta"
+      />
+      <org-card
+        variant="cta"
+        [imageSrc]="orgCtaCard.imageSrc"
+        [imageAlt]="orgCtaCard.imageAlt"
+        [title]="orgCtaCard.title"
+        [description]="orgCtaCard.description"
+        [actionLabel]="orgCtaCard.actionLabel"
+      />
+    </div>
+  </section>
+</div>
