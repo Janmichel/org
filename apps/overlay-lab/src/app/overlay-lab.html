@@ -1,0 +1,68 @@
+<section class="lab" aria-labelledby="lab-title">
+  <header class="lab__header">
+    <p class="lab__eyebrow">Web component · Shadow DOM</p>
+    <h1 id="lab-title">Overlay lab</h1>
+    <p class="lab__lead">
+      Ce custom element embarque le design system org, un
+      <code>MatDialog</code>
+      et des menus CDK imbriqués. Les overlays sont rendus dans
+      <strong>son propre</strong>
+      container, à l’intérieur du Shadow DOM.
+    </p>
+  </header>
+
+  <org-chip
+    label="DS org embarqué"
+    color="primary"
+    icon="palette"
+    [bordered]="true"
+  />
+
+  <div
+    class="lab-mode"
+    role="group"
+    aria-label="Cible des overlays CDK"
+  >
+    <button
+      matButton="tonal"
+      type="button"
+      [class.is-active]="isolated()"
+      [attr.aria-pressed]="isolated()"
+      (click)="setIsolated(true)"
+      data-testId="overlay-lab-isolate"
+    >
+      Overlay dans le Shadow DOM
+    </button>
+    <button
+      matButton="tonal"
+      type="button"
+      [class.is-active]="!isolated()"
+      [attr.aria-pressed]="!isolated()"
+      (click)="setIsolated(false)"
+      data-testId="overlay-lab-leak"
+    >
+      Overlay sur document.body
+    </button>
+  </div>
+
+  <p
+    class="lab__status"
+    role="status"
+    [class.lab__status--leak]="!isolated()"
+  >
+    @if (isolated()) {
+      Overlays isolés — dialog et menus ignorent les CSS de l’hôte.
+    } @else {
+      Overlays fuités sur body (top layer) — collisions avec l’application hôte.
+    }
+  </p>
+
+  <button
+    matButton="filled"
+    type="button"
+    (click)="openDialog()"
+    data-testId="overlay-lab-open-dialog"
+  >
+    Ouvrir le dialog + menus
+  </button>
+</section>

@@ -1,0 +1,134 @@
+<h2 mat-dialog-title>Dialog du design system</h2>
+
+<mat-dialog-content>
+  <p>
+    Ce panneau est un
+    <code>MatDialog</code>
+    . Le bouton ci-dessous ouvre un
+    <code>MatMenu</code>
+    avec un sous-menu : deux overlays CDK imbriqués.
+  </p>
+
+  <div class="dialog-chips">
+    <org-chip label="Shadow" color="primary" icon="web_asset" />
+    <org-chip
+      label="Overlay CDK"
+      color="secondary"
+      icon="layers"
+      [bordered]="true"
+    />
+  </div>
+
+  <div class="dialog-actions-row">
+    <button
+      matButton="filled"
+      type="button"
+      [matMenuTriggerFor]="rootMenu"
+      data-testId="overlay-lab-open-menu"
+    >
+      Ouvrir le menu imbriqué
+    </button>
+    <span class="dialog-last">
+      Dernière action : {{ lastAction() }}
+    </span>
+  </div>
+
+  <mat-menu #rootMenu="matMenu">
+    <button
+      mat-menu-item
+      type="button"
+      (click)="choose('dupliquer')"
+      data-testId="overlay-lab-menu-duplicate"
+    >
+      Dupliquer
+    </button>
+    <button
+      mat-menu-item
+      type="button"
+      [matMenuTriggerFor]="exportMenu"
+      data-testId="overlay-lab-menu-export"
+    >
+      Exporter
+    </button>
+    <button
+      mat-menu-item
+      type="button"
+      (click)="choose('archiver')"
+      data-testId="overlay-lab-menu-archive"
+    >
+      Archiver
+    </button>
+  </mat-menu>
+
+  <mat-menu #exportMenu="matMenu">
+    <button
+      mat-menu-item
+      type="button"
+      (click)="choose('export-pdf')"
+      data-testId="overlay-lab-menu-pdf"
+    >
+      PDF
+    </button>
+    <button
+      mat-menu-item
+      type="button"
+      (click)="choose('export-csv')"
+      data-testId="overlay-lab-menu-csv"
+    >
+      CSV
+    </button>
+    <button
+      mat-menu-item
+      type="button"
+      [matMenuTriggerFor]="formatMenu"
+      data-testId="overlay-lab-menu-format"
+    >
+      Autre format
+    </button>
+  </mat-menu>
+
+  <mat-menu #formatMenu="matMenu">
+    <button
+      mat-menu-item
+      type="button"
+      (click)="choose('export-xlsx')"
+      data-testId="overlay-lab-menu-xlsx"
+    >
+      Excel
+    </button>
+    <button
+      mat-menu-item
+      type="button"
+      (click)="choose('export-json')"
+      data-testId="overlay-lab-menu-json"
+    >
+      JSON
+    </button>
+  </mat-menu>
+
+  <org-datepicker
+    label="Date dans le dialog"
+    placeholder="JJ/MM/AAAA"
+    hint="Le calendrier est un 3e overlay CDK"
+    [(value)]="pickedDate"
+  />
+  <p class="dialog-last">
+    Date :
+    {{
+      pickedDate()
+        ? (pickedDate() | date: 'mediumDate' : 'fr-FR')
+        : '—'
+    }}
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    matButton
+    type="button"
+    mat-dialog-close
+    data-testId="overlay-lab-dialog-close"
+  >
+    Fermer
+  </button>
+</mat-dialog-actions>

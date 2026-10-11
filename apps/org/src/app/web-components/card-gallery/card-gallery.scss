@@ -1,0 +1,55 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+  box-sizing: border-box;
+  color-scheme: light;
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-large);
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$violet-palette,
+        tertiary: mat.$violet-palette
+      ),
+      typography: Roboto,
+      density: 0
+    )
+  );
+}
+
+:host *,
+:host *::before,
+:host *::after {
+  box-sizing: border-box;
+}
+
+.card-gallery {
+  display: block;
+  width: 100%;
+}
+
+.card-gallery__empty {
+  margin: 0;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: var(--mat-sys-surface-container);
+  color: var(--mat-sys-on-surface-variant);
+  text-align: center;
+}
+
+.card-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, 16.5rem), 1fr)
+  );
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.card-gallery__grid org-card {
+  max-width: none;
+  width: 100%;
+}

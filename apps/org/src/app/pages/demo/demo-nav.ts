@@ -90,5 +90,14 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     subtitle: 'Composant lib @org/ui.',
     icon: 'radio_button_unchecked',
     group: 'secondary'
+  },
+  {
+    fragment: 'card-gallery',
+    label: 'Gallery WC',
+    title: 'Card gallery',
+    subtitle: 'Web component Shadow DOM — grille JSON.',
+    icon: 'view_module',
+    group: 'secondary',
+    accent: true
   }
 ];

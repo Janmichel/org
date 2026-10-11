@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hôte hostile — overlay-lab</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <style>
+      /*
+        Application hôte fictive : CSS volontairement destructeur.
+        Objectif = collisionner button / overlay / dialog / menu Material.
+        Le web component Shadow DOM ne doit pas en hériter tant que
+        les overlays restent dans son propre container.
+      */
+      :root {
+        --host-bg: #1a1208;
+        --host-panel: #f4d35e;
+        --host-accent: #ee2e31;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background:
+          repeating-linear-gradient(
+            135deg,
+            #2b2115,
+            #2b2115 12px,
+            #1a1208 12px,
+            #1a1208 24px
+          );
+        color: #7cff6b;
+        font-family: 'Comic Sans MS', 'Papyrus', cursive;
+      }
+
+      .host-shell {
+        display: grid;
+        gap: 1.25rem;
+        max-width: 64rem;
+        margin: 0 auto;
+        padding: 1.25rem;
+      }
+
+      .host-banner,
+      .host-panel {
+        padding: 1rem 1.15rem;
+        background: var(--host-panel);
+        color: #3b0d11;
+        border: 6px ridge #8b5a2b;
+        box-shadow: 8px 8px 0 #000;
+      }
+
+      .host-banner h1 {
+        margin: 0 0 0.35rem;
+        font-size: 1.85rem;
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+      }
+
+      .host-banner p,
+      .host-panel p {
+        margin: 0.4rem 0 0;
+        max-width: 46rem;
+      }
+
+      .host-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 0.85rem;
+      }
+
+      button {
+        background: #39ff14 !important;
+        color: #ff00aa !important;
+        font-family: Impact, 'Arial Black', sans-serif !important;
+        font-size: 1.05rem !important;
+        text-transform: uppercase !important;
+        border: 4px dashed #ff00aa !important;
+        border-radius: 0 !important;
+        padding: 0.35rem 0.9rem !important;
+        box-shadow: none !important;
+        transform: rotate(-2deg);
+      }
+
+      .cdk-overlay-pane,
+      .mat-mdc-dialog-container,
+      .mat-mdc-dialog-surface,
+      .mat-mdc-menu-panel,
+      .mdc-dialog,
+      .mdc-menu-surface {
+        background: #ffff00 !important;
+        color: #ff0000 !important;
+        font-family: Impact, sans-serif !important;
+        border: 5px solid #00ffff !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .mdc-button,
+      .mat-mdc-button-base,
+      .mat-mdc-menu-item,
+      .mat-mdc-dialog-title,
+      .mat-mdc-dialog-content {
+        background: #ff00aa !important;
+        color: #00ffff !important;
+        font-family: 'Comic Sans MS', cursive !important;
+        text-transform: uppercase !important;
+        border-radius: 0 !important;
+      }
+
+      org-overlay-lab {
+        display: block;
+      }
+
+      .host-dialog {
+        width: min(52rem, calc(100vw - 2rem));
+        max-height: calc(100vh - 2rem);
+        padding: 0;
+        overflow: auto;
+        border: 8px ridge #8b5a2b;
+        background: #f4d35e;
+        color: #3b0d11;
+        box-shadow: 12px 12px 0 #000;
+      }
+
+      .host-dialog::backdrop {
+        background: rgb(255 0 170 / 0.42);
+      }
+
+      .host-dialog__bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.75rem 0.9rem;
+        border-bottom: 4px dashed #8b5a2b;
+      }
+
+      .host-dialog__bar h2 {
+        margin: 0;
+        font-size: 1.15rem;
+        text-transform: uppercase;
+      }
+
+      .host-dialog__body {
+        padding: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="host-shell">
+      <header class="host-banner">
+        <h1>Shop Legacy 2014</h1>
+        <p>
+          Ceci simule <strong>un autre projet</strong> : CSS global agressif
+          sur <code>button</code>, <code>.cdk-overlay-*</code> et
+          <code>.mat-mdc-*</code>. Le web component ci-dessous embarque le
+          design system org dans un Shadow DOM, avec son propre overlay.
+        </p>
+        <div class="host-actions">
+          <button type="button">Bouton de l’hôte</button>
+          <button type="button" id="open-host-dialog">
+            Ouvrir le web component
+          </button>
+        </div>
+      </header>
+
+      <section class="host-panel">
+        <p>
+          Le bouton ouvre un <strong>dialog natif de l’hôte</strong>. Le web
+          component y est projeté (Shadow DOM + overlays CDK à lui).<br />
+          1. Dans ce dialog hôte, ouvre le dialog Material : il doit rester
+          violet.<br />
+          2. « Overlay sur document.body » : collisions jaune / Impact avec
+          cette page.
+        </p>
+      </section>
+    </div>
+
+    <dialog id="host-dialog" class="host-dialog" aria-labelledby="host-dialog-title">
+      <div class="host-dialog__bar">
+        <h2 id="host-dialog-title">Dialog de l’hôte</h2>
+        <button type="button" id="close-host-dialog">Fermer</button>
+      </div>
+      <div class="host-dialog__body">
+        <org-overlay-lab></org-overlay-lab>
+      </div>
+    </dialog>
+
+    <script>
+      const hostDialog = document.getElementById('host-dialog');
+      document
+        .getElementById('open-host-dialog')
+        .addEventListener('click', () => hostDialog.showModal());
+      document
+        .getElementById('close-host-dialog')
+        .addEventListener('click', () => hostDialog.close());
+    </script>
+  </body>
+</html>

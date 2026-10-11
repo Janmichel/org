@@ -1,0 +1,91 @@
+@use '@angular/cdk' as cdk;
+@use '@angular/material' as mat;
+@use '../../../../libs/ui/src/styles/popover';
+@use '../../../../libs/ui/src/styles/tooltip';
+
+@include cdk.overlay();
+
+.org-overlay-lab-host {
+  display: block;
+  box-sizing: border-box;
+  color-scheme: light;
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-large);
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$violet-palette,
+        tertiary: mat.$violet-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+.org-overlay-lab-host *,
+.org-overlay-lab-host *::before,
+.org-overlay-lab-host *::after {
+  box-sizing: border-box;
+}
+
+.lab {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 2px dashed var(--mat-sys-primary);
+  border-radius: 1.25rem;
+  background: var(--mat-sys-surface-container-lowest);
+  color: var(--mat-sys-on-surface);
+}
+
+.lab__eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--mat-sys-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lab__header h1 {
+  margin: 0;
+  font: var(--mat-sys-headline-small);
+}
+
+.lab__lead {
+  margin: 0.65rem 0 0;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.lab__lead code {
+  font-size: 0.9em;
+}
+
+.lab-mode {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.lab-mode .is-active {
+  box-shadow: 0 0 0 0.15rem var(--mat-sys-primary);
+}
+
+.lab__status {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 0.75rem;
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+}
+
+.lab__status--leak {
+  background: var(--mat-sys-error-container);
+  color: var(--mat-sys-on-error-container);
+}
+
+.org-overlay-lab-dialog-pane {
+  font: var(--mat-sys-body-large);
+}

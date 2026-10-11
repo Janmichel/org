@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.dialog-chips,
+.dialog-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.dialog-last {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+code {
+  font-size: 0.9em;
+}

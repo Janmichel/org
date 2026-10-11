@@ -1,0 +1,34 @@
+<section
+  class="card-gallery"
+  [attr.aria-label]="ariaLabel()"
+  data-testId="org-card-gallery"
+>
+  @if (items().length === 0) {
+    <p class="card-gallery__empty" data-testId="org-card-gallery-empty">
+      Aucune carte à afficher.
+    </p>
+  } @else {
+    <div
+      class="card-gallery__grid"
+      [style.grid-template-columns]="gridTemplateColumns()"
+    >
+      @for (item of items(); track trackItem(item, $index)) {
+        <org-card
+          [variant]="item.variant || 'article'"
+          [imageSrc]="item.imageSrc"
+          [imageAlt]="item.imageAlt || ''"
+          [label]="item.label || ''"
+          [title]="item.title"
+          [description]="item.description || ''"
+          [author]="item.author || null"
+          [meta]="item.meta || ''"
+          [actionLabel]="item.actionLabel || ''"
+          [playAriaLabel]="item.playAriaLabel || 'Lecture'"
+          [leadingIcon]="item.leadingIcon || 'lens'"
+          (playClick)="onPlay(item, $event)"
+          (actionClick)="onAction(item, $event)"
+        />
+      }
+    </div>
+  }
+</section>

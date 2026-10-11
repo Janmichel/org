@@ -20,6 +20,8 @@ import {
   OrgTooltipRichContent,
   OrgTooltipTemplate
 } from '@org/ui';
+import { CardGallery } from '../../../web-components/card-gallery/card-gallery';
+import { CardGalleryItem } from '../../../web-components/card-gallery/card-gallery.model';
 import { DemoCard } from '../card/demo-card';
 import { DemoCalendar } from '../calendar/demo-calendar';
 import { DemoDatepicker } from '../datepicker/demo-datepicker';
@@ -37,6 +39,7 @@ import { DemoDatepicker } from '../datepicker/demo-datepicker';
     OrgPopover,
     OrgTooltip,
     OrgTooltipTemplate,
+    CardGallery,
     DemoCard,
     DemoCalendar,
     DemoDatepicker
@@ -141,6 +144,63 @@ export class ShowcasePage {
       'This is the result of our ongoing efforts to improve the usability',
     actionLabel: 'Button text'
   };
+
+  protected readonly galleryItems: readonly CardGalleryItem[] = [
+    {
+      id: 'g1',
+      variant: 'article',
+      imageSrc:
+        'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80',
+      imageAlt: 'Dégradé abstrait coloré',
+      label: 'Label',
+      title: 'Best tools used in UX/UI Designers',
+      description:
+        'This is the result of our ongoing efforts to improve the usability',
+      author: {
+        name: 'Olivia',
+        avatarSrc: 'https://i.pravatar.cc/80?img=47',
+        avatarAlt: 'Olivia'
+      },
+      meta: '3 min read'
+    },
+    {
+      id: 'g2',
+      variant: 'cta',
+      imageSrc:
+        'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80',
+      imageAlt: 'Composition abstraite colorée',
+      title: 'Design systems that scale',
+      description:
+        'This is the result of our ongoing efforts to improve the usability',
+      actionLabel: 'Découvrir'
+    },
+    {
+      id: 'g3',
+      variant: 'article',
+      imageSrc:
+        'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+      imageAlt: 'Vague abstraite orange et violette',
+      label: 'Insight',
+      title: 'Motion et profondeur',
+      description: 'Une carte pour les listes éditoriales et mises en avant.',
+      author: {
+        name: 'Alex',
+        avatarSrc: 'https://i.pravatar.cc/80?img=12',
+        avatarAlt: 'Alex'
+      },
+      meta: '5 min read'
+    },
+    {
+      id: 'g4',
+      variant: 'cta',
+      imageSrc:
+        'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80',
+      imageAlt: 'Néons abstraits',
+      title: 'Galerie embarquable',
+      description: 'Web component Shadow DOM alimenté par un tableau JSON.',
+      actionLabel: 'Voir plus'
+    }
+  ];
 
   protected readonly buttonShapes = ['square', 'rounded'] as const;
   protected readonly buttonVariants = ['filled', 'tonal', 'outlined'] as const;

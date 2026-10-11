@@ -735,4 +735,24 @@
       />
     </div>
   </section>
+
+  <section id="card-gallery" class="demo-panel">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Web component</p>
+      <h2>Card gallery</h2>
+      <p>
+        Grille Material encapsulée (Shadow DOM), alimentée par un tableau JSON.
+        Bundle embarquable :
+        <code>nx serve org:serve-card-gallery</code>
+        — tag
+        <code>&lt;org-card-gallery&gt;</code>.
+      </p>
+    </div>
+
+    <org-card-gallery-host
+      [items]="galleryItems"
+      [columns]="3"
+      ariaLabel="Galerie de démonstration"
+    />
+  </section>
 </div>

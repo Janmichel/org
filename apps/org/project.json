@@ -61,6 +61,57 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     },
+    "build-card-gallery": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/org-card-gallery",
+        "browser": "apps/org/src/main.card-gallery.ts",
+        "index": "apps/org/src/index.card-gallery.html",
+        "tsConfig": "apps/org/tsconfig.app.json",
+        "styles": [],
+        "outputHashing": "none"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1mb",
+              "maximumError": "2mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "16kb",
+              "maximumError": "24kb"
+            }
+          ]
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      }
+    },
+    "serve-card-gallery": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "org:build-card-gallery",
+        "port": 4301
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "org:build-card-gallery:production"
+        },
+        "development": {
+          "buildTarget": "org:build-card-gallery:development"
+        }
+      }
+    },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
