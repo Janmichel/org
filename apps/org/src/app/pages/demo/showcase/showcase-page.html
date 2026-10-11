@@ -741,8 +741,8 @@
       <p class="kis-demo-eyebrow">Web component</p>
       <h2>Card gallery</h2>
       <p>
-        Grille Material encapsulée (Shadow DOM), alimentée par un tableau JSON.
-        Bundle embarquable :
+        Grille masonry responsive (Shadow DOM), ratios d’images et textes
+        variables. Un clic ouvre un modal. Bundle :
         <code>nx serve org:serve-card-gallery</code>
         — tag
         <code>&lt;org-card-gallery&gt;</code>.
@@ -751,7 +751,7 @@
 
     <org-card-gallery-host
       [items]="galleryItems"
-      [columns]="3"
+      [columns]="8"
       ariaLabel="Galerie de démonstration"
     />
   </section>

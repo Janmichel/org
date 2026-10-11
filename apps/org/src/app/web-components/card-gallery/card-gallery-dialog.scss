@@ -1,0 +1,74 @@
+:host {
+  display: block;
+}
+
+.gallery-dialog__media {
+  overflow: hidden;
+  margin: 0 0 1rem;
+  border-radius: 0.75rem;
+  aspect-ratio: 16 / 9;
+  background: var(--mat-sys-surface-container);
+}
+
+.gallery-dialog__media[data-image-ratio='wide'] {
+  aspect-ratio: 21 / 9;
+}
+
+.gallery-dialog__media[data-image-ratio='square'] {
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-dialog__media[data-image-ratio='portrait'] {
+  aspect-ratio: 4 / 5;
+}
+
+.gallery-dialog__media[data-image-ratio='tall'] {
+  aspect-ratio: 3 / 4;
+}
+
+.gallery-dialog__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-dialog__label {
+  margin: 0 0 0.35rem;
+  color: var(--mat-sys-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gallery-dialog__description {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.gallery-dialog__author {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0 0;
+  color: var(--mat-sys-on-surface);
+}
+
+.gallery-dialog__avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.gallery-dialog__meta {
+  margin: 0.75rem 0 0;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.85rem;
+}
+
+.gallery-dialog__author .gallery-dialog__meta {
+  margin: 0 0 0 auto;
+}

@@ -42,6 +42,8 @@ export class OrgCard {
   readonly meta = input('');
   readonly actionLabel = input('');
   readonly playAriaLabel = input('Lecture');
+  /** Icône custom (image) à la place de `play_arrow`. */
+  readonly playIconSrc = input('');
   readonly leadingIcon = input('lens');
 
   readonly playClick = output<MouseEvent>();
@@ -51,4 +53,5 @@ export class OrgCard {
   protected readonly isCta = computed(() => this.variant() === 'cta');
   protected readonly hasAuthor = computed(() => Boolean(this.author()?.name));
   protected readonly hasAction = computed(() => Boolean(this.actionLabel()));
+  protected readonly hasPlayIcon = computed(() => Boolean(this.playIconSrc()));
 }

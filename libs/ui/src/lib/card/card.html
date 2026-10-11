@@ -22,12 +22,25 @@
     <button
       type="button"
       class="org-card__play"
+      [class.org-card__play--custom]="hasPlayIcon()"
       matIconButton
       data-testId="org-card-play"
       [attr.aria-label]="playAriaLabel()"
       (click)="playClick.emit($event)"
     >
-      <mat-icon>play_arrow</mat-icon>
+      @if (hasPlayIcon()) {
+        <img
+          class="org-card__play-icon"
+          [src]="playIconSrc()"
+          alt=""
+          width="44"
+          height="44"
+        />
+      } @else {
+        <mat-icon class="org-card__play-icon-font" aria-hidden="true">
+          play_arrow
+        </mat-icon>
+      }
     </button>
     }
   </div>

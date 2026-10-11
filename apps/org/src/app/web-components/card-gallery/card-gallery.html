@@ -10,24 +10,32 @@
   } @else {
     <div
       class="card-gallery__grid"
-      [style.grid-template-columns]="gridTemplateColumns()"
+      [style.--org-card-gallery-max-cols]="maxColumns()"
     >
       @for (item of items(); track trackItem(item, $index)) {
-        <org-card
-          [variant]="item.variant || 'article'"
-          [imageSrc]="item.imageSrc"
-          [imageAlt]="item.imageAlt || ''"
-          [label]="item.label || ''"
-          [title]="item.title"
-          [description]="item.description || ''"
-          [author]="item.author || null"
-          [meta]="item.meta || ''"
-          [actionLabel]="item.actionLabel || ''"
-          [playAriaLabel]="item.playAriaLabel || 'Lecture'"
-          [leadingIcon]="item.leadingIcon || 'lens'"
-          (playClick)="onPlay(item, $event)"
-          (actionClick)="onAction(item, $event)"
-        />
+        <div
+          class="card-gallery__item"
+          [attr.data-image-ratio]="item.imageRatio || 'landscape'"
+          data-testId="org-card-gallery-item"
+          (click)="onCardActivate(item, $event)"
+        >
+          <org-card
+            [variant]="item.variant || 'article'"
+            [imageSrc]="item.imageSrc"
+            [imageAlt]="item.imageAlt || ''"
+            [label]="item.label || ''"
+            [title]="item.title"
+            [description]="item.description || ''"
+            [author]="item.author || null"
+            [meta]="item.meta || ''"
+            [actionLabel]="item.actionLabel || ''"
+            [playAriaLabel]="item.playAriaLabel || 'Lecture'"
+            [playIconSrc]="item.playIconSrc || playIconSrc()"
+            [leadingIcon]="item.leadingIcon || 'lens'"
+            (playClick)="onPlay(item, $event)"
+            (actionClick)="onAction(item, $event)"
+          />
+        </div>
       }
     </div>
   }

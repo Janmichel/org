@@ -1,0 +1,55 @@
+<h2 mat-dialog-title id="org-card-gallery-dialog-title">
+  {{ data.title }}
+</h2>
+
+<mat-dialog-content>
+  <div
+    class="gallery-dialog__media"
+    [attr.data-image-ratio]="data.imageRatio || 'landscape'"
+  >
+    <img
+      class="gallery-dialog__image"
+      [src]="data.imageSrc"
+      [alt]="data.imageAlt || data.title"
+      width="640"
+      height="360"
+    />
+  </div>
+
+  @if (data.label) {
+    <p class="gallery-dialog__label">{{ data.label }}</p>
+  }
+
+  @if (data.description) {
+    <p class="gallery-dialog__description">{{ data.description }}</p>
+  }
+
+  @if (data.author; as author) {
+    <div class="gallery-dialog__author">
+      <img
+        class="gallery-dialog__avatar"
+        [src]="author.avatarSrc"
+        [alt]="author.avatarAlt || author.name"
+        width="32"
+        height="32"
+      />
+      <span>{{ author.name }}</span>
+      @if (data.meta) {
+        <span class="gallery-dialog__meta">{{ data.meta }}</span>
+      }
+    </div>
+  } @else if (data.meta) {
+    <p class="gallery-dialog__meta">{{ data.meta }}</p>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    matButton
+    type="button"
+    mat-dialog-close
+    data-testId="org-card-gallery-dialog-close"
+  >
+    Fermer
+  </button>
+</mat-dialog-actions>

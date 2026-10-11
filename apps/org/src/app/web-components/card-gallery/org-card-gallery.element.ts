@@ -11,25 +11,9 @@ import {
   parseCardGalleryItems
 } from './card-gallery.model';
 import { cardGalleryConfig } from './card-gallery.providers';
+import { ensureMaterialCdnOnDocument } from './material-cdn';
 
 const ELEMENT_NAME = 'org-card-gallery';
-
-const FONT_HREFS = [
-  'https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap',
-  'https://fonts.googleapis.com/icon?family=Material+Icons'
-];
-
-function ensureDocumentFonts(): void {
-  for (const href of FONT_HREFS) {
-    if (document.querySelector(`link[href="${href}"]`)) {
-      continue;
-    }
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    document.head.appendChild(link);
-  }
-}
 
 export class OrgCardGalleryElement extends HTMLElement {
   static get observedAttributes(): string[] {
@@ -40,6 +24,7 @@ export class OrgCardGalleryElement extends HTMLElement {
   private componentRef: ComponentRef<CardGallery> | null = null;
   private actionSub: OutputRefSubscription | null = null;
   private playSub: OutputRefSubscription | null = null;
+  private openSub: OutputRefSubscription | null = null;
   private isBootstrapping = false;
   private itemsValue: CardGalleryItem[] = [];
 
@@ -58,7 +43,7 @@ export class OrgCardGalleryElement extends HTMLElement {
     }
 
     this.isBootstrapping = true;
-    ensureDocumentFonts();
+    ensureMaterialCdnOnDocument();
     this.itemsValue = parseCardGalleryItems(
       this.getAttribute('items') ?? this.itemsValue
     );
@@ -94,6 +79,15 @@ export class OrgCardGalleryElement extends HTMLElement {
           })
         );
       });
+      this.openSub = componentRef.instance.itemOpen.subscribe((item) => {
+        this.dispatchEvent(
+          new CustomEvent('item-open', {
+            detail: { item },
+            bubbles: true,
+            composed: true
+          })
+        );
+      });
 
       this.appRef = appRef;
       this.componentRef = componentRef;
@@ -109,8 +103,10 @@ export class OrgCardGalleryElement extends HTMLElement {
   disconnectedCallback(): void {
     this.actionSub?.unsubscribe();
     this.playSub?.unsubscribe();
+    this.openSub?.unsubscribe();
     this.actionSub = null;
     this.playSub = null;
+    this.openSub = null;
     this.componentRef?.destroy();
     this.appRef?.destroy();
     this.componentRef = null;
@@ -139,7 +135,7 @@ export class OrgCardGalleryElement extends HTMLElement {
     const columnsAttr = this.getAttribute('columns');
     if (columnsAttr != null && columnsAttr !== '') {
       const columns = Number(columnsAttr);
-      if (Number.isFinite(columns) && columns > 0) {
+      if (Number.isFinite(columns) && columns >= 0) {
         ref.setInput('columns', Math.floor(columns));
       }
     }

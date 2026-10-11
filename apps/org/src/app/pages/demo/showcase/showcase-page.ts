@@ -145,62 +145,76 @@ export class ShowcasePage {
     actionLabel: 'Button text'
   };
 
-  protected readonly galleryItems: readonly CardGalleryItem[] = [
-    {
-      id: 'g1',
-      variant: 'article',
-      imageSrc:
-        'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Dégradé abstrait coloré',
-      label: 'Label',
-      title: 'Best tools used in UX/UI Designers',
-      description:
-        'This is the result of our ongoing efforts to improve the usability',
-      author: {
-        name: 'Olivia',
-        avatarSrc: 'https://i.pravatar.cc/80?img=47',
-        avatarAlt: 'Olivia'
-      },
-      meta: '3 min read'
-    },
-    {
-      id: 'g2',
-      variant: 'cta',
-      imageSrc:
-        'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Composition abstraite colorée',
-      title: 'Design systems that scale',
-      description:
-        'This is the result of our ongoing efforts to improve the usability',
-      actionLabel: 'Découvrir'
-    },
-    {
-      id: 'g3',
-      variant: 'article',
-      imageSrc:
-        'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Vague abstraite orange et violette',
-      label: 'Insight',
-      title: 'Motion et profondeur',
-      description: 'Une carte pour les listes éditoriales et mises en avant.',
-      author: {
-        name: 'Alex',
-        avatarSrc: 'https://i.pravatar.cc/80?img=12',
-        avatarAlt: 'Alex'
-      },
-      meta: '5 min read'
-    },
-    {
-      id: 'g4',
-      variant: 'cta',
-      imageSrc:
-        'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80',
-      imageAlt: 'Néons abstraits',
-      title: 'Galerie embarquable',
-      description: 'Web component Shadow DOM alimenté par un tableau JSON.',
-      actionLabel: 'Voir plus'
-    }
-  ];
+  protected readonly galleryItems: readonly CardGalleryItem[] = (() => {
+    const images = [
+      'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1574169208507-84376144848b?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=600&q=80'
+    ];
+    const titles = [
+      'Best tools used in UX/UI Designers',
+      'Design systems that scale',
+      'Motion',
+      'Galerie embarquable Shadow DOM',
+      'Tokens Material',
+      'Accessibilité WCAG AA pour les overlays',
+      'Overlays',
+      'Grille JSON responsive',
+      'Composants',
+      'Pattern web component réutilisable',
+      'Focus clavier',
+      'Surface et elevation Material 3'
+    ];
+    const descriptions = [
+      undefined,
+      'Court.',
+      'Carte avec un texte un peu plus long pour varier la hauteur.',
+      'This is the result of our ongoing efforts to improve the usability and customizability of these components across products.',
+      'Une description moyenne pour rythmer la galerie masonry.',
+      ''
+    ];
+    const ratios = [
+      'wide',
+      'landscape',
+      'square',
+      'portrait',
+      'tall'
+    ] as const;
+    const labels = ['Label', 'Insight', 'Studio', 'Featured', 'Guide', 'Lab'];
+    const authors = ['Olivia', 'Alex', 'Sam', 'Maya', 'Leo', 'Nina'];
+    const count = 32;
+
+    return Array.from({ length: count }, (_, index) => {
+      const isCta = index % 3 === 1;
+      const authorName = authors[index % authors.length];
+      const description = descriptions[index % descriptions.length];
+      const base: CardGalleryItem = {
+        id: `g${index + 1}`,
+        variant: isCta ? 'cta' : 'article',
+        imageSrc: images[index % images.length],
+        imageAlt: `Visuel abstrait ${index + 1}`,
+        imageRatio: ratios[index % ratios.length],
+        title: `${titles[index % titles.length]} #${index + 1}`,
+        description: description || undefined,
+        label: isCta ? undefined : labels[index % labels.length],
+        meta: isCta ? undefined : `${(index % 7) + 2} min read`,
+        actionLabel: isCta ? 'Découvrir' : undefined,
+        author: isCta
+          ? null
+          : {
+              name: authorName,
+              avatarSrc: `https://i.pravatar.cc/80?img=${(index % 60) + 1}`,
+              avatarAlt: authorName
+            }
+      };
+      return base;
+    });
+  })();
 
   protected readonly buttonShapes = ['square', 'rounded'] as const;
   protected readonly buttonVariants = ['filled', 'tonal', 'outlined'] as const;

@@ -70,6 +70,13 @@
         "browser": "apps/org/src/main.card-gallery.ts",
         "index": "apps/org/src/index.card-gallery.html",
         "tsConfig": "apps/org/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/org/public/icons",
+            "output": "icons"
+          }
+        ],
         "styles": [],
         "outputHashing": "none"
       },

@@ -1,4 +1,7 @@
+@use '@angular/cdk' as cdk;
 @use '@angular/material' as mat;
+
+@include cdk.overlay();
 
 :host {
   display: block;
@@ -40,16 +43,94 @@
 }
 
 .card-gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(min(100%, 16.5rem), 1fr)
-  );
-  gap: 1.25rem;
-  align-items: start;
+  --org-card-gallery-max-cols: 8;
+  column-count: min(var(--org-card-gallery-max-cols), 8);
+  column-gap: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
-.card-gallery__grid org-card {
+@media (max-width: 90rem) {
+  .card-gallery__grid {
+    column-count: min(var(--org-card-gallery-max-cols), 6);
+  }
+}
+
+@media (max-width: 70rem) {
+  .card-gallery__grid {
+    column-count: min(var(--org-card-gallery-max-cols), 4);
+  }
+}
+
+@media (max-width: 50rem) {
+  .card-gallery__grid {
+    column-count: min(var(--org-card-gallery-max-cols), 3);
+  }
+}
+
+@media (max-width: 36rem) {
+  .card-gallery__grid {
+    column-count: min(var(--org-card-gallery-max-cols), 2);
+  }
+}
+
+@media (max-width: 24rem) {
+  .card-gallery__grid {
+    column-count: 1;
+  }
+}
+
+.card-gallery__item {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 clamp(0.75rem, 1.5vw, 1.25rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: start;
+  cursor: pointer;
+  border-radius: 1rem;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.card-gallery__item[data-image-ratio='wide'] {
+  --org-card-media-ratio: 21 / 9;
+}
+
+.card-gallery__item[data-image-ratio='landscape'] {
+  --org-card-media-ratio: 16 / 9;
+}
+
+.card-gallery__item[data-image-ratio='square'] {
+  --org-card-media-ratio: 1 / 1;
+}
+
+.card-gallery__item[data-image-ratio='portrait'] {
+  --org-card-media-ratio: 4 / 5;
+}
+
+.card-gallery__item[data-image-ratio='tall'] {
+  --org-card-media-ratio: 3 / 4;
+}
+
+.card-gallery__item:focus-visible {
+  outline: 0.15rem solid var(--mat-sys-primary);
+  outline-offset: 0.2rem;
+}
+
+.card-gallery__item org-card {
   max-width: none;
   width: 100%;
+  pointer-events: none;
+}
+
+.card-gallery__item org-card .org-card__media {
+  aspect-ratio: var(--org-card-media-ratio, 16 / 9);
+}
+
+.card-gallery__item org-card button {
+  pointer-events: auto;
+}
+
+.org-card-gallery-dialog-pane {
+  font: var(--mat-sys-body-large);
 }
