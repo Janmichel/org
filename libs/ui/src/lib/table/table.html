@@ -1,0 +1,48 @@
+<div class="org-table-wrap" data-testId="org-table">
+  <table
+    mat-table
+    [dataSource]="dataSource()"
+    class="org-table__surface"
+    [attr.aria-label]="ariaLabel()"
+  >
+    @for (column of columns(); track column.key) {
+      <ng-container [matColumnDef]="column.key">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="org-table__header-cell"
+        >
+          {{ column.label }}
+        </th>
+        <td
+          mat-cell
+          *matCellDef="let row"
+          class="org-table__cell"
+          [class.org-table__cell--clickable]="isCellClickEnabled(row, column)"
+          [attr.data-testId]="'org-table-cell-' + column.key"
+          [attr.tabindex]="isCellClickEnabled(row, column) ? 0 : null"
+          (click)="onCellClick(row, column, $event)"
+          (keydown.enter)="onCellKeyActivate(row, column, $event)"
+          (keydown.space)="onCellKeyActivate(row, column, $event)"
+        >
+          {{ displayValue(row, column.key) }}
+        </td>
+      </ng-container>
+    }
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns()"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns(); let i = index"
+      class="org-table__row"
+      [attr.data-testId]="'org-table-row-' + i"
+      (click)="onRowClick(row, i, $event)"
+    ></tr>
+  </table>
+
+  @if (data().length === 0) {
+    <p class="org-table__empty" data-testId="org-table-empty">
+      Aucune donnée.
+    </p>
+  }
+</div>

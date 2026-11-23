@@ -1,14 +1,18 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { filter, map, startWith } from 'rxjs';
 import { DEMO_NAV } from './demo-nav';
-import { ShowcasePage } from './showcase/showcase-page';
 
 @Component({
   selector: 'app-demo-layout',
-  imports: [RouterLink, MatIconModule, ShowcasePage],
+  imports: [RouterLink, RouterOutlet, MatIconModule],
   templateUrl: './demo-layout.html',
   styleUrl: './demo-layout.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -16,22 +20,26 @@ import { ShowcasePage } from './showcase/showcase-page';
 export class DemoLayout {
   private readonly router = inject(Router);
 
-  protected readonly primaryItems = DEMO_NAV.filter((item) => item.group === 'primary');
+  protected readonly primaryItems = DEMO_NAV.filter(
+    (item) => item.group === 'primary'
+  );
   protected readonly secondaryItems = DEMO_NAV.filter(
     (item) => item.group === 'secondary'
   );
 
-  private readonly fragment = toSignal(
+  private readonly url = toSignal(
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map(() => this.router.parseUrl(this.router.url).fragment),
-      startWith(this.router.parseUrl(this.router.url).fragment)
+      map(() => this.router.url),
+      startWith(this.router.url)
     ),
-    { initialValue: this.router.parseUrl(this.router.url).fragment }
+    { initialValue: this.router.url }
   );
 
-  protected readonly current = computed(
-    () =>
-      DEMO_NAV.find((item) => item.fragment === this.fragment()) ?? DEMO_NAV[0]
-  );
+  protected readonly current = computed(() => {
+    const active = DEMO_NAV.find((item) =>
+      this.url().includes(`/demo/${item.path}`)
+    );
+    return active ?? DEMO_NAV[0];
+  });
 }

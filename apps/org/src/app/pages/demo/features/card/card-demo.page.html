@@ -1,0 +1,86 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Contenu</p>
+      <h2>Article card</h2>
+      <p>
+        Quatre mises en page, avec checkbox 20×20 en haut à droite
+        (`selectFilled` optionnel pour le fond contrasté).
+        @if (selectedCount() === 0) {
+          Aucune card sélectionnée.
+        } @else {
+          {{ selectedCount() }}
+          {{ selectedCount() > 1 ? 'cards sélectionnées.' : 'card sélectionnée.' }}
+        }
+      </p>
+    </div>
+
+    <div class="card-gallery">
+      <article class="card-gallery__item">
+        <h3>Classique</h3>
+        <app-demo-card
+          variant="article"
+          [(selected)]="articleSelected"
+          [selectFilled]="true"
+          [imageSrc]="article.imageSrc"
+          [imageAlt]="article.imageAlt"
+          [label]="article.label"
+          [date]="article.date"
+          [author]="author"
+          [title]="article.title"
+          [description]="article.description"
+          [actionLabel]="article.actionLabel"
+          [meta]="article.meta"
+        />
+      </article>
+
+      <article class="card-gallery__item card-gallery__item--wide">
+        <h3>Split</h3>
+        <app-demo-card
+          variant="split"
+          [(selected)]="splitSelected"
+          [imageSrc]="split.imageSrc"
+          [imageAlt]="split.imageAlt"
+          [label]="split.label"
+          [date]="split.date"
+          [author]="author"
+          [title]="split.title"
+          [description]="split.description"
+          [actionLabel]="split.actionLabel"
+          [meta]="split.meta"
+        />
+      </article>
+
+      <article class="card-gallery__item">
+        <h3>Overlay</h3>
+        <app-demo-card
+          variant="overlay"
+          [(selected)]="overlaySelected"
+          [selectFilled]="true"
+          [imageSrc]="overlay.imageSrc"
+          [imageAlt]="overlay.imageAlt"
+          [label]="overlay.label"
+          [author]="author"
+          [title]="overlay.title"
+          [actionLabel]="overlay.actionLabel"
+          [meta]="overlay.meta"
+        />
+      </article>
+
+      <article class="card-gallery__item">
+        <h3>Featured</h3>
+        <app-demo-card
+          variant="featured"
+          [(selected)]="featuredSelected"
+          [imageSrc]="featured.imageSrc"
+          [imageAlt]="featured.imageAlt"
+          [label]="featured.label"
+          [date]="featured.date"
+          [author]="author"
+          [title]="featured.title"
+          [description]="featured.description"
+          [actionLabel]="featured.actionLabel"
+          [meta]="featured.meta"
+        />
+      </article>
+    </div>
+  </article>

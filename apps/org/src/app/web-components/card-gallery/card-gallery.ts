@@ -61,11 +61,13 @@ export class CardGallery {
 
   constructor() {
     ensureMaterialCdnOnDocument();
-    const el = this.host.nativeElement;
-    this.overlayContainer.attach(el.shadowRoot ?? el);
 
+    // Attacher APRÈS création du ShadowRoot (ViewEncapsulation.ShadowDom).
+    // Sinon OverlayContainer tombe sur body → collision CSS hôte.
     afterNextRender(() => {
+      const el = this.host.nativeElement;
       const shadow = el.shadowRoot;
+      this.overlayContainer.attach(shadow ?? el);
       if (shadow) {
         ensureMaterialCdnInShadow(shadow);
       }

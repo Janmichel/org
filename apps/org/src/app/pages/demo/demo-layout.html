@@ -3,13 +3,12 @@
     <p class="kis-demo-rail__brand">org</p>
 
     <nav class="kis-demo-rail__nav" aria-label="Composants">
-      @for (item of primaryItems; track item.fragment) {
+      @for (item of primaryItems; track item.path) {
         <a
           class="kis-demo-rail__link"
-          routerLink="/demo"
-          [fragment]="item.fragment"
-          [class.is-active]="current().fragment === item.fragment"
-          [attr.aria-current]="current().fragment === item.fragment ? 'page' : null"
+          [routerLink]="['/demo', item.path]"
+          [class.is-active]="current().path === item.path"
+          [attr.aria-current]="current().path === item.path ? 'page' : null"
           [attr.data-testId]="'nav-' + item.label.toLowerCase()"
         >
           <mat-icon class="kis-demo-rail__icon" aria-hidden="true">
@@ -20,14 +19,16 @@
       }
     </nav>
 
-    <nav class="kis-demo-rail__nav kis-demo-rail__nav--secondary" aria-label="Autres composants">
-      @for (item of secondaryItems; track item.fragment) {
+    <nav
+      class="kis-demo-rail__nav kis-demo-rail__nav--secondary"
+      aria-label="Autres composants"
+    >
+      @for (item of secondaryItems; track item.path) {
         <a
           class="kis-demo-rail__link"
-          routerLink="/demo"
-          [fragment]="item.fragment"
-          [class.is-active]="current().fragment === item.fragment"
-          [attr.aria-current]="current().fragment === item.fragment ? 'page' : null"
+          [routerLink]="['/demo', item.path]"
+          [class.is-active]="current().path === item.path"
+          [attr.aria-current]="current().path === item.path ? 'page' : null"
           [attr.data-testId]="'nav-' + item.label.toLowerCase()"
         >
           <span
@@ -54,6 +55,6 @@
       <p class="kis-demo-subtitle">{{ current().subtitle }}</p>
     </header>
 
-    <app-showcase-page />
+    <router-outlet />
   </div>
 </div>

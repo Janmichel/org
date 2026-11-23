@@ -1,0 +1,27 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Lib</p>
+      <h2>Org card</h2>
+      <p>Composant réutilisable @org/ui.</p>
+    </div>
+    <div class="card-gallery">
+      <org-card
+        variant="article"
+        [imageSrc]="orgArticleCard.imageSrc"
+        [imageAlt]="orgArticleCard.imageAlt"
+        [label]="orgArticleCard.label"
+        [title]="orgArticleCard.title"
+        [description]="orgArticleCard.description"
+        [author]="orgArticleCard.author"
+        [meta]="orgArticleCard.meta"
+      />
+      <org-card
+        variant="cta"
+        [imageSrc]="orgCtaCard.imageSrc"
+        [imageAlt]="orgCtaCard.imageAlt"
+        [title]="orgCtaCard.title"
+        [description]="orgCtaCard.description"
+        [actionLabel]="orgCtaCard.actionLabel"
+      />
+    </div>
+  </article>

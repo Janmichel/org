@@ -1,0 +1,19 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Web component</p>
+      <h2>Card gallery</h2>
+      <p>
+        Grille masonry responsive (Shadow DOM), ratios d’images et textes
+        variables. Un clic ouvre un modal. Bundle :
+        <code>nx serve org:serve-card-gallery</code>
+        — tag
+        <code>&lt;org-card-gallery&gt;</code>.
+      </p>
+    </div>
+
+    <org-card-gallery-host
+      [items]="galleryItems"
+      [columns]="8"
+      ariaLabel="Galerie de démonstration"
+    />
+  </article>

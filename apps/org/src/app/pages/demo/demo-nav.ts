@@ -1,7 +1,7 @@
 export type DemoNavGroup = 'primary' | 'secondary';
 
 export interface DemoNavItem {
-  fragment: string;
+  path: string;
   label: string;
   title: string;
   subtitle: string;
@@ -12,7 +12,7 @@ export interface DemoNavItem {
 
 export const DEMO_NAV: readonly DemoNavItem[] = [
   {
-    fragment: 'card',
+    path: 'card',
     label: 'Card',
     title: 'Card',
     subtitle: 'Cartes article, sélection et call-to-action.',
@@ -20,7 +20,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'calendar',
+    path: 'calendar',
     label: 'Calendar',
     title: 'Calendar',
     subtitle: 'Plage de dates, indicateur et actions.',
@@ -28,7 +28,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'button',
+    path: 'button',
     label: 'Button',
     title: 'Button',
     subtitle: 'Filled, tonal, outlined — carré ou arrondi.',
@@ -36,7 +36,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'checkbox',
+    path: 'checkbox',
     label: 'Checkbox',
     title: 'Checkbox',
     subtitle: 'Cases carrées et rondes.',
@@ -44,7 +44,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'toggle',
+    path: 'toggle',
     label: 'Toggle',
     title: 'Toggle',
     subtitle: 'Interrupteur on/off.',
@@ -52,7 +52,15 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'chip',
+    path: 'table',
+    label: 'Table',
+    title: 'Table',
+    subtitle: 'Opt-in cellClick par colonne, rowClick sinon.',
+    icon: 'table_chart',
+    group: 'primary'
+  },
+  {
+    path: 'chip',
     label: 'Chip',
     title: 'Chip',
     subtitle: 'Puces de statut, couleurs, icône et bordure.',
@@ -60,7 +68,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'tooltip',
+    path: 'tooltip',
     label: 'Tooltip',
     title: 'Tooltip',
     subtitle: 'Survol contextuel, adaptable à tout déclencheur.',
@@ -68,7 +76,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'popover',
+    path: 'popover',
     label: 'Popover',
     title: 'Popover',
     subtitle: 'Clic ou hover, flèche, formulaires.',
@@ -76,7 +84,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'primary'
   },
   {
-    fragment: 'datepicker',
+    path: 'datepicker',
     label: 'Datepicker',
     title: 'Datepicker',
     subtitle: 'Wrapper Material — date unique ou plage.',
@@ -84,7 +92,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'secondary'
   },
   {
-    fragment: 'org-card',
+    path: 'org-card',
     label: 'Org card',
     title: 'Org card',
     subtitle: 'Composant lib @org/ui.',
@@ -92,7 +100,7 @@ export const DEMO_NAV: readonly DemoNavItem[] = [
     group: 'secondary'
   },
   {
-    fragment: 'card-gallery',
+    path: 'card-gallery',
     label: 'Gallery WC',
     title: 'Card gallery',
     subtitle: 'Web component Shadow DOM — grille JSON.',

@@ -1,0 +1,20 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Données</p>
+      <h2>Table</h2>
+      <p>
+        Opt-in par colonne : <code>cellClick: true</code> sur Nom ;
+        <code>cellClick: (row) =&gt; …</code> sur Statut (Actif seulement).
+        Sinon le clic remonte en <code>rowClick</code> (jamais les deux).
+      </p>
+      <p class="table-log" aria-live="polite">{{ tableLog() }}</p>
+    </div>
+
+    <org-table
+      [columns]="tableColumns"
+      [data]="tableData"
+      ariaLabel="Équipe demo"
+      (cellClick)="onTableCellClick($event)"
+      (rowClick)="onTableRowClick($event)"
+    />
+  </article>

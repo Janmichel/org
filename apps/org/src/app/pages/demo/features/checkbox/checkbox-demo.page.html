@@ -1,0 +1,21 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Formulaire</p>
+      <h2>Checkbox</h2>
+      <p>Carré et rond, coché, indéterminé, désactivé.</p>
+    </div>
+
+    <div class="checkbox-board">
+      <mat-checkbox aria-label="Non cochée" />
+      <mat-checkbox aria-label="Cochée" [ngModel]="true" />
+      <mat-checkbox aria-label="Indéterminée" [indeterminate]="true" />
+      <mat-checkbox aria-label="Désactivée" disabled />
+    </div>
+
+    <div class="checkbox-board checkbox-board--round">
+      <mat-checkbox aria-label="Ronde non cochée" />
+      <mat-checkbox aria-label="Ronde cochée" [ngModel]="true" />
+      <mat-checkbox aria-label="Ronde indéterminée" [indeterminate]="true" />
+      <mat-checkbox aria-label="Ronde désactivée" disabled />
+    </div>
+  </article>

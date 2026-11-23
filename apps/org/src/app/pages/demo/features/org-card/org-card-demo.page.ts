@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { OrgCard } from '@org/ui';
 
 @Component({
-  selector: 'app-card-page',
+  selector: 'app-org-card-demo-page',
   imports: [OrgCard],
-  templateUrl: './card-page.html',
-  styleUrl: './card-page.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './org-card-demo.page.html',
+  styleUrls: ['../../shared/demo-page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardPage {
-  protected readonly articleCard = {
+export class OrgCardDemoPage {
+  protected readonly orgArticleCard = {
     imageSrc:
       'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80',
     imageAlt: 'Dégradé abstrait coloré',
@@ -20,18 +20,18 @@ export class CardPage {
     author: {
       name: 'Olivia',
       avatarSrc: 'https://i.pravatar.cc/80?img=47',
-      avatarAlt: 'Olivia',
+      avatarAlt: 'Olivia'
     },
-    meta: '3 min read',
+    meta: '3 min read'
   };
 
-  protected readonly ctaCard = {
+  protected readonly orgCtaCard = {
     imageSrc:
       'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80',
     imageAlt: 'Composition abstraite colorée',
     title: 'Best tools used in UX/UI Designers',
     description:
       'This is the result of our ongoing efforts to improve the usability',
-    actionLabel: 'Button text',
+    actionLabel: 'Button text'
   };
 }

@@ -1,0 +1,58 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Statut</p>
+      <h2>Chip</h2>
+      <p>Couleurs, icône optionnelle, plein, borduré ou arrondi.</p>
+    </div>
+
+    <h3 class="demo-panel__kicker">Plein</h3>
+    <div class="chip-board" aria-label="Chips plein">
+      @for (color of chipColors; track color) {
+        <org-chip [color]="color" [label]="color" />
+        <org-chip [color]="color" [label]="color" icon="check_circle" />
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Borduré</h3>
+    <div class="chip-board" aria-label="Chips bordurés">
+      @for (color of chipColors; track color) {
+        <org-chip [color]="color" [label]="color" [bordered]="true" />
+        <org-chip
+          [color]="color"
+          [label]="color"
+          icon="local_offer"
+          [bordered]="true"
+        />
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Border radius</h3>
+    <div class="chip-board" aria-label="Chips arrondis">
+      <org-chip color="primary" label="Arrondi" [rounded]="true" />
+      <org-chip
+        color="secondary"
+        label="Arrondi + icône"
+        icon="favorite"
+        [rounded]="true"
+      />
+      <org-chip
+        color="tertiary"
+        label="Arrondi + bordure"
+        icon="local_offer"
+        [bordered]="true"
+        [rounded]="true"
+      />
+    </div>
+
+    <h3 class="demo-panel__kicker">États</h3>
+    <div class="chip-board" aria-label="États chip">
+      <org-chip color="primary" label="Actif" icon="check_circle" />
+      <org-chip color="neutral" label="Désactivé" [disabled]="true" />
+      <org-chip
+        color="error"
+        label="Erreur"
+        icon="error"
+        [bordered]="true"
+      />
+    </div>
+  </article>

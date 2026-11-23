@@ -1,0 +1,35 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Actions</p>
+      <h2>Button</h2>
+      <p>Texte, icône à droite, à gauche, icône seule. Halo au focus clavier.</p>
+    </div>
+
+    @for (shape of buttonShapes; track shape) {
+      <h3 class="demo-panel__kicker">
+        {{ shape === 'square' ? 'Angles droits' : 'Arrondi' }}
+      </h3>
+      <div class="button-board" [attr.data-shape]="shape">
+        @for (variant of buttonVariants; track variant) {
+          <div class="button-board__row">
+            <button type="button" [matButton]="variant">Button text</button>
+            <button type="button" [matButton]="variant">
+              Button text
+              <mat-icon iconPositionEnd>chevron_right</mat-icon>
+            </button>
+            <button type="button" [matButton]="variant">
+              <mat-icon>chevron_left</mat-icon>
+              Button text
+            </button>
+            <button
+              type="button"
+              [matButton]="variant"
+              aria-label="Ouvrir le document"
+            >
+              <mat-icon>menu_book</mat-icon>
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </article>

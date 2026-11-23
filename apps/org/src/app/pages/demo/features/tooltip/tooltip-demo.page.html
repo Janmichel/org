@@ -1,0 +1,124 @@
+﻿<article class="demo-page">
+    <div class="demo-panel__intro">
+      <p class="kis-demo-eyebrow">Feedback</p>
+      <h2>Tooltip</h2>
+      <p>
+        Couleurs, animations, template structuré ou contenu custom.
+      </p>
+    </div>
+
+    <h3 class="demo-panel__kicker">Couleurs</h3>
+    <div class="chip-board" aria-label="Tooltips couleurs">
+      @for (color of tooltipColors; track color) {
+        <button
+          type="button"
+          matButton="tonal"
+          [orgTooltip]="'Couleur ' + color"
+          [orgTooltipColor]="color"
+        >
+          {{ color }}
+        </button>
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Animations</h3>
+    <div class="chip-board" aria-label="Tooltips animations">
+      @for (animation of tooltipAnimations; track animation) {
+        <button
+          type="button"
+          matButton="outlined"
+          [orgTooltip]="'Animation ' + animation"
+          orgTooltipColor="primary"
+          [orgTooltipAnimation]="animation"
+          orgTooltipPosition="above"
+        >
+          {{ animation }}
+        </button>
+      }
+    </div>
+
+    <h3 class="demo-panel__kicker">Étiquette bounce</h3>
+    <div class="chip-board" aria-label="Tooltip bounce étiquette">
+      <org-chip
+        orgTooltip="Nouveau"
+        orgTooltipColor="primary"
+        orgTooltipAnimation="bounce"
+        orgTooltipPosition="above"
+        color="primary"
+        label="Promo"
+        icon="local_offer"
+        [rounded]="true"
+      />
+      <button
+        type="button"
+        matButton="filled"
+        orgTooltip="Étiquette promo — −20 %"
+        orgTooltipColor="error"
+        orgTooltipAnimation="bounce"
+        orgTooltipPosition="above"
+      >
+        Voir l’offre
+      </button>
+    </div>
+
+    <h3 class="demo-panel__kicker">Sur chips</h3>
+    <div class="chip-board" aria-label="Tooltips sur chips">
+      <org-chip
+        orgTooltip="Compte actif et synchronisé"
+        orgTooltipColor="success"
+        orgTooltipAnimation="scale"
+        color="success"
+        label="Actif"
+        icon="check_circle"
+      />
+      <org-chip
+        orgTooltip="Action requise avant publication"
+        orgTooltipPosition="below"
+        orgTooltipColor="warning"
+        color="warning"
+        label="Attention"
+        icon="warning"
+        [bordered]="true"
+      />
+      <org-chip
+        orgTooltip="Impossible de poursuivre"
+        orgTooltipColor="error"
+        orgTooltipAnimation="slide"
+        color="error"
+        label="Erreur"
+        icon="error"
+        [rounded]="true"
+      />
+    </div>
+
+    <h3 class="demo-panel__kicker">Template riche</h3>
+    <div class="chip-board" aria-label="Tooltips template">
+      <button
+        type="button"
+        matButton="filled"
+        orgTooltip
+        [orgTooltipRich]="syncTooltipRich"
+        orgTooltipColor="primary"
+        orgTooltipAnimation="scale"
+      >
+        Détails sync
+      </button>
+      <org-chip
+        orgTooltip
+        [orgTooltipContent]="authorTooltip"
+        orgTooltipColor="neutral"
+        color="secondary"
+        label="Auteur"
+        icon="person"
+        [bordered]="true"
+      />
+    </div>
+
+    <ng-template #authorTooltip>
+      <org-tooltip-template
+        eyebrow="Profil"
+        title="Olivia Quinn"
+        meta="UX writer · Studio Design"
+      />
+    </ng-template>
+  </article>
